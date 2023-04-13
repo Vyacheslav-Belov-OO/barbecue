@@ -35,6 +35,9 @@
                         color:white;
                         text-transform: uppercase;
                         text-decoration: none;
+                        &:hover{
+                            color:hsla(0, 0%, 86%, 1);
+                        }
                     }
                 }
             }

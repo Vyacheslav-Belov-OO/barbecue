@@ -10,23 +10,24 @@ html {
 }
 
 * {
-    font-family: 'PT Sans';
+    font-family: 'Montserrat';
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Roboto';
+    
 }
 
 .container{
     max-width: 1140px;
     margin: 0 auto;
-    color: #fff;
+    color:#526276;
     position: relative;
     padding: 0 40px;
 }
 body{
     position: relative;
     overflow-x: hidden;
+    color: #526276;
 }
 
 @media (max-width: 768px) {
@@ -41,12 +42,26 @@ body{
 
 @import 'blocks/header.scss';
 @import 'blocks/about.scss';
+@import 'blocks/design.scss';
+@import '../dist/css/font.css';
+@import 'blocks/advantages';
 
 
-@font-face {
-    font-family: "RobotoCondensed"; 
-    src: url("../fonts/RobotoCondensed-Regular.ttf") format("truetype"); 
-    font-style: normal; 
-    font-weight: normal; 
-    } 
-
+@font-face { 
+    font-family: "MontserratBold";
+    src: url("../dist/fonts/MontserratBold/MontserratBold.eot");
+    src: url("../dist/fonts/MontserratBold/MontserratBold.eot?#iefix")format("embedded-opentype"),
+    url("../dist/fonts/MontserratBold/MontserratBold.woff") format("woff"),
+    url("../dist/fonts/MontserratBold/MontserratBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 700;
+}
+@font-face { 
+    font-family: "MontserratRegular";
+    src: url("../dist/fonts/MontserratRegular/MontserratRegular.eot");
+    src: url("../dist/fonts/MontserratRegular/MontserratRegular.eot?#iefix")format("embedded-opentype"),
+    url("../dist/fonts/MontserratRegular/MontserratRegular.woff") format("woff"),
+    url("../dist/fonts/MontserratRegular/MontserratRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 400;
+}
