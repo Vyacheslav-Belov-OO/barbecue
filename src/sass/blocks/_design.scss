@@ -38,6 +38,23 @@
                 width: 175px;
                 height: 175px;
                 left: -20px;
+
+                &.img-2 {
+                    background-image:url(../../img/Mororo_Design_Outdoor_Furniture_2_2x_1x.jpeg);
+                }
+                &.img-3 {
+                    background-image:url(../../img/03_1x.jpg);
+                }
+                &.img-4 {
+                    background-image:url(../../img/Mororo_Christo_-_Outdoor_Seat_2x_1x.jpeg);
+                }
+                &.img-5 {
+                    background-image:url(../../img/04_1x.jpg);
+                }
+                &.img-6 {
+                    background-image:url(../../img/An_atmospheric_autumn_garden_with_design_fire_pit_2x_1x.jpeg);
+                }
+
             }
             .design_item_text{
                 background-color: rgba(82, 98, 118 , 0.1);
