@@ -1,0 +1,5 @@
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/s47467/public_html/mangal-ochag.rf
+    - /bin/cp -R src/* $DEPLOYPATH
+      
