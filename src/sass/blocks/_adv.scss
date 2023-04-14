@@ -1,0 +1,52 @@
+#adv{
+    margin-top: 50px;
+    
+    .adv_wrapper{
+        
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+
+        .adv_slogan{
+            background-color: rgba(82, 98, 118, 0.2);
+            padding: 30px 45px;
+            .adv_slogan_wrapper{
+                background-color:#526276;
+                color:white;
+                padding: 10px;
+
+                .sale{
+                    font-size: 24px;
+                    font-weight: 500;
+                    line-height: 33px;
+                }
+                .offer{
+                    font-size: 33px;
+                    font-weight: 700;
+                    line-height: 44px;
+                }
+                .submit{
+                    margin-top: 21px;
+                    display: inline-block;
+                    background-color:white;
+                    border-radius: 5px;
+                    padding: 8px 35px;
+                    font-size: 15px;
+                    font-weight: 600;
+                    text-decoration: none;
+                    color:526276;
+
+                }
+
+            }
+        }
+
+        .adv_img{
+            width: 100%;
+            background-image: url(../../img/e6cdfaf2b6c66acbfc249b7726577f08_1x.jpg);
+            background-size:cover
+        }
+    
+    }
+    
+}
