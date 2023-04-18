@@ -53,14 +53,6 @@ body{
 
 
 
-// importing core styling file
-@import "../scss/fontawesome.scss";
-
-// our project needs Solid + Brands
-@import "../scss/solid.scss";
-@import "../scss/brands.scss";
-
-
 @font-face { 
     font-family: "MontserratBold";
     src: url("../dist/fonts/MontserratBold/MontserratBold.eot");
