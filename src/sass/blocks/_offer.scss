@@ -1,0 +1,43 @@
+#offer{
+    margin-top: 50px;
+    background-color:rgba(82, 98, 118, 0.05);
+    .offer_divider{
+        border: 1px solid #526276;
+        width: 1220px;
+        display:block;
+        margin: 0 auto;
+    }
+    .offer_wrapper{
+        padding: 60px 0;
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        align-items:center;
+        justify-content: center;
+    }
+    
+    .offer_title{
+        font-size: 24px;
+        font-weight: 600;
+        &::after{
+            content:"";
+            margin-left: 0;
+            margin-right: auto;
+            margin-top: 1.07143rem;
+            display: block;
+            width: 75% ;
+            height: 2px;
+            background-color:#526276;
+            border-top-width: 2px;
+
+        }
+
+    }
+    .offer_descr{
+        margin-top: 15px;
+        font-size: 24px;
+        font-weight: 500;
+        color: black;
+    }
+       
+    
+}

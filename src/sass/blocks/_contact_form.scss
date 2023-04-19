@@ -1,0 +1,76 @@
+#contact_form{
+    padding: 100px 0 ;
+    .contact_form_wrapper{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        gap: 15px;
+        .form_title{
+            font-size: 24px;
+            color:black;
+            font-weight: 600;
+            line-height: 33px;
+            text-align: center;
+        }
+        .form_descr{
+            margin-top: 10px;
+            font-size: 15px;
+            font-weight: 400;
+            text-align: center;
+        }
+        .form{
+            padding: 14px 31px;
+            border-top: 1px solid rgba(82, 92, 105, 0.11);
+            margin-top: 10px;
+            // display: grid;
+            // grid-template-columns: 1fr;
+            // grid-template-rows: repeat(7, 1fr);
+            // gap: 10px;
+            .name{
+                background-color: rgba(247, 247, 247, 1);
+                border-radius: 5px;
+                border:none;
+                width: 100%;
+                height: 52px;
+                padding: 15px 35px 0 10px;
+            }
+            .surname{
+                margin-top: 10px;
+                background-color: rgba(247, 247, 247, 1);
+                border-radius: 5px;
+                border:none;
+                width: 100%;
+                height: 52px;
+                padding: 15px 35px 0 10px;
+            }
+            .phone{
+                margin-top: 10px;
+                background-color: rgba(247, 247, 247, 1);
+                border-radius: 5px;
+                border:none;
+                width: 100%;
+                height: 52px;
+                padding: 15px 35px 0 10px;
+            }
+            .email{
+                margin-top: 10px;
+                background-color: rgba(247, 247, 247, 1);
+                border-radius: 5px;
+                border:none;
+                width: 100%;
+                height: 52px;
+                padding: 15px 35px 0 10px;
+            }
+            .text{
+                margin-top: 10px;
+                background-color: rgba(247, 247, 247, 1);
+                border-radius: 5px;
+                border:none;
+                width: 100%;
+                height: 52px;
+                padding: 15px 35px 0 10px;
+            }
+
+        }
+    }
+}

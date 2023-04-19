@@ -19,14 +19,28 @@
     "D D D D D D E E E E E E"
     "F F F F G G G G H H H H";
     margin-top: 60px;
-    gap:10px;
+    gap:30px;
     
     .advantages_item{
-        border-top: 1px solid black;    
+        display: grid;
+        grid-template-columns: 14% 1fr;
+        grid-template-rows: 1fr;         
+        align-items: baseline;
+        gap:10px;
+        
+        
+        .advantages_item_img{
+            width: 100%;
+            font-size: 20px;
+        }
 
         .advantages_item_text{
+            border-top: 1px solid black;
+            padding-top: 8px;
             .advantages_item_header{
-                font-style: 22px;
+                font-size: 22px;
+                font-family: Montserrat;
+                line-height: 30px;
                 color:black;
                 font-weight: 600;
             }

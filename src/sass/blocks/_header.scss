@@ -50,9 +50,11 @@
             align-items: center;
             .slogan {
                 font-size: 65px;
+                color:white;
             }
             .descr {
                 font-size: 30px;
+                color:white;
             }
             .slogan_buttons{
                 display: grid;
@@ -73,7 +75,7 @@
                     color: white;
                     text-decoration: none;
                     &:hover{
-                        background-color: hsl(213.33, 18%, 49%);;
+                        background-color: hsl(213.33, 18%, 49%);
                     }
                 }
                 .submit{

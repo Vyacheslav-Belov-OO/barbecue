@@ -47,14 +47,12 @@ body{
 @import 'blocks/advantages';
 @import 'blocks/adv.scss';
 @import 'blocks/photo.scss';
+@import 'blocks/barbeque.scss';
+@import 'blocks/offer.scss';
+@import 'blocks/contact_form.scss';
+@import 'blocks/footer.scss';
 
 
-// importing core styling file
-@import "../scss/fontawesome.scss";
-
-// our project needs Solid + Brands
-@import "../scss/solid.scss";
-@import "../scss/brands.scss";
 
 
 @font-face { 
@@ -72,6 +70,13 @@ body{
     src: url("../dist/fonts/MontserratRegular/MontserratRegular.eot?#iefix")format("embedded-opentype"),
     url("../dist/fonts/MontserratRegular/MontserratRegular.woff") format("woff"),
     url("../dist/fonts/MontserratRegular/MontserratRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 400;
+}
+@font-face { 
+    font-family: "Font Awesome 6 Free";
+    src: url("../fontawesome/webfonts/fa-brands-400.woff2") format("woff");
+    src: url("../fontawesome/webfonts/fa-regular-400.ttf") format("truetype");
     font-style: normal;
     font-weight: 400;
 }

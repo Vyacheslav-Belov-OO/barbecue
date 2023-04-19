@@ -20,27 +20,35 @@
     .photo_slider_wrapper{
         margin-top: 44px;
         display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(3, 1fr);
         grid-template-areas:
-        "A A A A   A A B B   B B B B"
-        "A A A A   A A C C   C C C C"
-        "D D D D   E E E E   F F F F";
-        &.slide1{
-            grid-area: A;
+        "A A A B B B"
+        "A A A C C C"
+        "D D E E F F";
+        .photo_slide{
+            display:block;
+            width: 100%;
+
+            &.slide1{
+                grid-area: A;
+            }
+            &.slide2{
+                grid-area: B;
+            }
+            &.slide3{
+                grid-area: C;
+            }
+            &.slide4{
+                grid-area: D;
+            }
+            &.slide5{
+                grid-area: E;
+            }
+            &.slide6{
+                grid-area: F;
+            }
         }
-        &.slide2{
-            grid-area: B;
-        }
-        &.slide3{
-            grid-area: C;
-        }
-        &.slide4{
-            grid-area: D;
-        }
-        &.slide5{
-            grid-area: E;
-        }
-        &.slide6{
-            grid-area: F;
-        }
+       
     }
 }
