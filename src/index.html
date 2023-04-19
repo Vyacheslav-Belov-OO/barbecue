@@ -6,8 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Новые Коммуникационные Технологии</title>             
     <link rel="stylesheet" href="dist/css/font.css" />
-    <link rel="stylesheet" href="dist/css/style.min.css" />
-    <link rel="stylesheet" href="./fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="dist/css/style.min.css" />    
+    <link href="fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="fontawesome/css/brands.css" rel="stylesheet">
+    <link href="fontawesome/css/solid.css" rel="stylesheet">
+    <link href="fontawesome/css/regular.css" rel="stylesheet">
     <link rel="icon" href="./img/logo_small_dark.svg" type="image/x-icon" />
     <link type="Image/x-icon" href="./img/favicon.ico" rel="icon">
     <link
@@ -17,6 +20,7 @@
   </head>
 
   <body>   
+    <i class="fa-thin fa-drum-steelpan fa-2xs"></i>
     <section class="top" id="top">      
         <header class="header">
           <div class="container">
@@ -116,8 +120,8 @@
         </div>        
         <div class="advantages_list">
           <div class="advantages_item box-1">           
-            <div class="advantages_item_img">
-              <i class="fa-solid fa-drum-steelpan fa-2xl"></i>
+            <div class="advantages_item_img">             
+              <i class="fa-regular fa-drum-steelpan"></i>
             </div>
             <div class="advantages_item_text">
               <h2 class="advantages_item_header">Сталь 4 мм</h2>
@@ -135,7 +139,7 @@
           </div>
           <div class="advantages_item box-3">
             <div class="advantages_item_img">
-              <i class="fa-solid fas-table-picnic fa-2xl"></i>
+              <i class="fa-solid fa-table-picnic fa-2xl"></i>
             </div>
             <div class="advantages_item_text">
               <h2 class="advantages_item_header">Не требует стационарной установки</h2>
@@ -292,48 +296,53 @@
       <div class="container">
         <div class="contact_form_wrapper">
           <div class="form">
-            <div class="form_title"></div>
-            <div class="form_descr"></div>
+            <div class="form_title">Обратная связь</div>
+            <div class="form_descr">Поделитесь мнением о нашей работе или задайте нам любой интересующий вас вопрос в поле комментарий</div>
             <form action="" class="form">
-              <input type="text">
-              <input type="tel" name="" id="">
-              <input type="text">
-              <input type="email" name="" id="">
-              <input type="text">
-              
-              <input type="checkbox" name="" id="">
+              <input type="text" class="name" placeholder="Имя">
+              <input type="text" class="surname" placeholder="Фамилия">
+              <input type="tel" name="" id="phone" class="phone" placeholder="Телефон">              
+              <input type="email" name="" id="email" class="email" placeholder="E-mail">
+              <textarea type="text" placeholder="Комментарий" class="text"></textarea>
+              <div class="checkbox">
+                <input type="checkbox" name="" id="">
+                <p class="checkbox_text">Нажимая кнопку «Отправить», я даю свое согласие на обработку моих персональных данных, в соответствии с Федеральным законом от 27.07.2006 года №152-ФЗ «О персональных данных», на условиях и для целей, определенных в Согласии на обработку персональных данных <span class="b24-form-control-required">*</span></p>
+              </div>              
               <button class="submit"></button>
             </form>
           </div>
-          <div class="map"></div>
+          <div class="map">
+            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A0c1e83d9a32169638fae82037c36f9408cd2aea8ca88f4391d87db89590058f4&amp;source=constructor" width="570" height="586" frameborder="0"></iframe>
+          </div>
         </div>
       </div>
     </section>
     <section class="footer" id="footer">
       <div class="container">
         <h2 class="footer_title">КОНТАКТЫ</h2>
+        <hr class="footer_divider">
         <div class="footer_wrapper">
-          <div class="footer_item">
+          <div class="footer_item box_1">
             <div class="icom"></div>
             <div class="icon_mame">АДРЕС</div>
             <div class="footer_item_descr">Московская область г. Люберцы, ул. Транспортная, д. 37, стр. 1, пом. 1</div>
           </div>
-          <div class="footer_item">
+          <div class="footer_item box_2">
             <div class="icom"></div>
             <div class="icon_mame">Телефон</div>
             <div class="footer_item_descr"><a href="">+7 (499) 346-85-35</a></div>
           </div>
-          <div class="footer_item">
+          <div class="footer_item box_3">
             <div class="icom"></div>
             <div class="icon_mame">Email</div>
             <div class="footer_item_descr"><a href="">decor@stroykomproekt.ru</a> </div>
           </div>
-          <div class="footer_item">
+          <div class="footer_item box_4">
             <div class="icom"></div>
             <div class="icon_mame">ОСНОВНОЙ САЙТ</div>
             <div class="footer_item_descr">skp-decor.ru</div>
           </div>
-          <div class="footer_item">
+          <div class="footer_item box_5">
             <div class="icom"></div>
             <div class="icon_mame">ИНСТАГРАМ</div>
             <div class="footer_item_descr">@skp_decor_</div>
