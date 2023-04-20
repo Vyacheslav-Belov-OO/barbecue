@@ -18,18 +18,20 @@
         
     }
     .photo_slider_wrapper{
+        position: relative;
         margin-top: 44px;
         display: grid;
+        gap: 30px;
         grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
         grid-template-areas:
         "A A A B B B"
         "A A A C C C"
         "D D E E F F";
-        .photo_slide{
-            display:block;
-            width: 100%;
-
+        .single_photo_wrapper{           
+            overflow: hidden;            
+           
+            
             &.slide1{
                 grid-area: A;
             }
@@ -48,7 +50,30 @@
             &.slide6{
                 grid-area: F;
             }
+
+            .photo_slide{                
+                width: 100%;
+                height: 100%;                                
+
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    transition-duration: .2s;                    
+                    
+                    &:hover{
+                        filter: brightness(50%);                        
+                        transform: scale(1.1);
+                        transition-duration: .2s;                        
+                    }
+                    
+                    
+                }
+                
+            }
+            
         }
+        
        
     }
 }
