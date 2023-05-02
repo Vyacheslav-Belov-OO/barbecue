@@ -36,8 +36,9 @@
 
 }
 
-.menu_top_header.sticky {    
-    transition:all .5s linear;    
+.menu_top_header.sticky {       
+    animation-name: identifier;
+    animation-duration: .5s;
     top: 0;
     position: fixed;        
     background-color:white;        
@@ -54,6 +55,52 @@
                 text-decoration: underline;
             }
         }
-    }
+    }    
     
+}
+@keyframes identifier {
+    0% {
+      top: -95px;
+      
+    }
+    10% {
+        top: -85px;
+        
+    }
+    20% {
+        top: -75px;
+        
+    }
+    30% {
+        top: -65px;
+        
+    }
+    40% {
+        top: -55px;
+        
+    }
+    50% {
+        top: -45px;
+        
+    }
+    60% {
+        top: -35px;
+        
+    }
+    70% {
+        top: -25px;
+        
+    }
+    80% {
+        top: -15px;
+        
+    }
+    90% {
+        top: -5px;
+        
+    }
+    100% {
+      top: 0px;
+      
+    }
   }
