@@ -13,7 +13,7 @@ if (!error_get_last()) {
     $phone = $_POST['phone'] ;
     $email = $_POST['email'];
     $text = $_POST['text'];
-    $file = $_FILES['myfile'];
+    
     
     
     // Формирование самого письма
@@ -46,13 +46,7 @@ if (!error_get_last()) {
     $mail->addAddress('promix-print@mail.ru');  
     $mail->addAddress('promix-print@mail.ru'); // Ещё один, если нужен
     
-    // Прикрипление файлов к письму
-    if (!empty($file['name'][0])) {
-        for ($i = 0; $i < count($file['tmp_name']); $i++) {
-            if ($file['error'][$i] === 0) 
-                $mail->addAttachment($file['tmp_name'][$i], $file['name'][$i]);
-        }
-    }
+    
     // Отправка сообщения
     $mail->isHTML(true);
     $mail->Subject = $title;
