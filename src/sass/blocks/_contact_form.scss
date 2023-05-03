@@ -70,22 +70,36 @@
                 height: 52px;
                 padding: 15px 35px 0 10px;
             }
+            .checkbox{
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 15px;
+                input{
+                    margin-right: 10px;
+                }
+                .checkbox_text{
+                    font-size: 11px;
+                }
+            }
             .submit{
+                display: block;
+                margin: 0 auto;
                 background-color: #526276;
-                    display: flex;
-                    align-items:center;
-                    justify-content: center;
-                    padding: 8px 35px;
-                    border-radius: 5px;
-                    font-size:15px;
-                    font-weight: 600;
-                    text-transform: uppercase;
-                    color: white;
-                    text-decoration: none;
-                    cursor: pointer;
-                    &:hover{
-                        background-color: hsl(213.33, 18%, 49%);
-                    }
+                border:none;
+                display: flex;
+                align-items:center;
+                justify-content: center;
+                padding: 8px 35px;
+                border-radius: 5px;
+                font-size:15px;
+                font-weight: 600;
+                text-transform: uppercase;
+                color: white;
+                text-decoration: none;
+                cursor: pointer;
+                &:hover{
+                    background-color: hsl(213.33, 18%, 49%);
+                }
             }
 
         }
