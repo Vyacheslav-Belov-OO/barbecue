@@ -9,7 +9,7 @@
             display: block;
             width: 180px !important;
             height: 65px !important;
-            background-image:url(../../img/01_1x.png);
+            background-image:url(../../img/logo.png);
             background-size:cover;
         }
 
@@ -44,6 +44,14 @@
     background-color:white;        
     width: 100%;    
     z-index: 1;
+    border-bottom: 1px solid #d9d9d9;
+    .logo {
+        width: 100px !important;
+        height: 40px !important;
+        background-size:contain;
+        background-repeat: no-repeat;
+        filter: brightness(55%);                        
+    }
     .menu_item {
         list-style: none;
         
