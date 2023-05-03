@@ -315,7 +315,7 @@
           <div class="form">
             <div class="form_title">Обратная связь</div>
             <div class="form_descr">Поделитесь мнением о нашей работе или задайте нам любой интересующий вас вопрос в поле комментарий</div>
-            <form action="../src/mail.php" class="form" method="POST">
+            <form enctype="multipart/form-data" method="post" id="form"  onsubmit="submitForm(event)" action="send.php" class="form" >
               <input type="text" class="name" name="name" placeholder="Имя">
               <input type="text" class="surname" name="surname" placeholder="Фамилия">
               <input type="tel" name="" id="phone" class="phone" name="phone" placeholder="Телефон">              
