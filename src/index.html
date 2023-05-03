@@ -322,7 +322,7 @@
               <input type="email" name="" id="email" class="email" name="email" placeholder="E-mail">
               <textarea type="text" placeholder="Комментарий" class="text" name="text"></textarea>
               <div class="checkbox">
-                <input type="checkbox" name="checkbox" id=""> 
+                <input type="checkbox" name="checkbox" id="" checked> 
                 <p class="checkbox_text">Нажимая кнопку «Отправить», я даю свое согласие на обработку моих персональных данных, в соответствии с Федеральным законом от 27.07.2006 года №152-ФЗ «О персональных данных», на условиях и для целей, определенных в Согласии на обработку персональных данных <span class="b24-form-control-required">*</span></p>
               </div>              
               <button class="submit" type="submit">Отправить</button>
@@ -367,7 +367,37 @@
         </div>
       </div>
     </section>
-    
+    <script>
+      async function submitForm(event) {
+        event.preventDefault(); // отключаем перезагрузку/перенаправление страницы
+        try {
+          // Формируем запрос
+          const response = await fetch(event.target.action, {
+            method: 'POST',
+            body: new FormData(event.target)
+          });
+          // проверяем, что ответ есть
+          if (!response.ok) throw (`Ошибка при обращении к серверу: ${response.status}`);
+          // проверяем, что ответ действительно JSON
+          const contentType = response.headers.get('content-type');
+          if (!contentType || !contentType.includes('application/json')) {
+            throw ('Ошибка. Ответ не JSON');
+          }
+          // обрабатываем запрос
+          const json = await response.json();
+          if (json.result === "success") {
+            // в случае успеха
+            alert(json.info);
+          } else { 
+            // в случае ошибки
+            console.log(json.desc);
+            throw (json.info);
+          }
+        } catch (error) { // обработка ошибки
+          alert(error);
+        }
+      }
+      </script>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
     <script>
