@@ -315,17 +315,17 @@
           <div class="form">
             <div class="form_title">Обратная связь</div>
             <div class="form_descr">Поделитесь мнением о нашей работе или задайте нам любой интересующий вас вопрос в поле комментарий</div>
-            <form action="" class="form">
-              <input type="text" class="name" placeholder="Имя">
-              <input type="text" class="surname" placeholder="Фамилия">
-              <input type="tel" name="" id="phone" class="phone" placeholder="Телефон">              
-              <input type="email" name="" id="email" class="email" placeholder="E-mail">
-              <textarea type="text" placeholder="Комментарий" class="text"></textarea>
+            <form action="../src/mail.php" class="form" method="POST">
+              <input type="text" class="name" name="name" placeholder="Имя">
+              <input type="text" class="surname" name="surname" placeholder="Фамилия">
+              <input type="tel" name="" id="phone" class="phone" name="phone" placeholder="Телефон">              
+              <input type="email" name="" id="email" class="email" name="email" placeholder="E-mail">
+              <textarea type="text" placeholder="Комментарий" class="text" name="text"></textarea>
               <div class="checkbox">
-                <input type="checkbox" name="" id="">
+                <input type="checkbox" name="checkbox" id=""> 
                 <p class="checkbox_text">Нажимая кнопку «Отправить», я даю свое согласие на обработку моих персональных данных, в соответствии с Федеральным законом от 27.07.2006 года №152-ФЗ «О персональных данных», на условиях и для целей, определенных в Согласии на обработку персональных данных <span class="b24-form-control-required">*</span></p>
               </div>              
-              <button class="submit"></button>
+              <button class="submit" type="submit">Отправить</button>
             </form>
           </div>
           <div class="map">
