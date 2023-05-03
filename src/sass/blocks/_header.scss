@@ -4,47 +4,13 @@
     background-position-x: 50%;
     background-position-y: 50%;
     background-size:cover;
+    margin-top: -95px;
+    padding: 400px 0 0 0 ;
     
 
-    .header {        
-      
-        .header_wrapper{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            .logo{
-                display: block;
-                width: 180px !important;
-                height: 65px !important;
-                background-image:url(../../img/01_1x.png);
-                background-size:cover;
-            }
-    
-            .menu_list{
-                display: grid;
-                grid-template-columns: repeat(6, auto);
-                gap: 20px;
-    
-    
-                .menu_item {
-                    list-style: none;
-                    
-                    .menu_item_link{
-                        color:white;
-                        text-transform: uppercase;
-                        text-decoration: none;
-                        &:hover{
-                            color:hsla(0, 0%, 86%, 1);
-                        }
-                    }
-                }
-            }
-        }
-
+    .header {
         .slogan_wrapper{
-            margin-top: 300Px;
+            
             display: flex;
             flex-direction: column;
             align-items: center;
