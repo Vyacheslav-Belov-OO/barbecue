@@ -2,6 +2,24 @@
 
 document.addEventListener('DOMContentLoaded', () =>{
   const menu = document.querySelector('.menu_top_header');
+  // const modal = document.querySelector('#order');
+  // const submit = document.querySelectorAll('.submit');
+  // const btn = document.querySelector('#123');
+
+  // btn.addEventListener('click', (event)=>{
+  //   event.preventDefault();
+  //   console.log(111);
+  // })
+  
+  // modal.style.visibility = 'visible';
+  // submit.forEach((btn, i) => {
+  //   btn.addEventListener('click', (event) => {
+  //     event.preventDefault();
+  //     modal.style.visibility = 'visible';
+  //     console.log(111);
+  //   })
+  // })
+  
  
   window.addEventListener('scroll', e => {
     if(window.scrollY >= 100) {
@@ -42,5 +60,9 @@ document.addEventListener('DOMContentLoaded', () =>{
       alert(error);
     }
   }
+
+
+
+  
 
 });
