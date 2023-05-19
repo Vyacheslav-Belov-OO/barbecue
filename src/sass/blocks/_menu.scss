@@ -12,6 +12,9 @@
             background-image:url(../../img/logo.png);
             background-size:cover;
         }
+        .mobile_menu{
+            display: none;
+        }
 
         .menu_list{
             display: grid;
@@ -113,3 +116,41 @@
       
     }
   }
+
+@media (max-width: 1060px) {
+    .menu_top_header{
+        .header_wrapper{
+            .menu_list{
+                gap: 10px;
+            }
+        }
+    }
+    
+}
+@media (max-width: 1000px) {
+    .menu_top_header{
+        .header_wrapper{
+            .menu{
+                display: none;
+            }
+            .mobile_menu{
+                display: block;
+                width: 24px;
+                height: 24px;
+                background-image: url(../../img/mob-menu.svg);
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center center;
+                position: absolute;
+                right: 20px;
+                top: 24px;
+                cursor: pointer;
+                filter: grayscale(80%);
+            }
+            .menu_list{
+                display: none;
+            }
+        }
+    }
+    
+}

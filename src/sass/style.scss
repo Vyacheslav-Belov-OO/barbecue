@@ -18,7 +18,8 @@ html {
 }
 
 .container{
-    max-width: 1140px;
+    
+    max-width: calc(100% - 80px);
     margin: 0 auto;
     color:#526276;
     position: relative;
