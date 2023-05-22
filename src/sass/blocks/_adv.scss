@@ -50,3 +50,14 @@
     }
     
 }
+@media (max-width: 600px){
+    #adv{
+        .adv_wrapper{
+            grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+            .adv_img{
+                display: none;
+            }
+        }
+    }
+}

@@ -15,9 +15,7 @@
     .advantages_list{
         display: grid;
         grid-template-areas:
-    "B B B B B B G G G G G G"
-    "B B B B B B G G G G G G"
-    ". . . H H H H H H . . .";
+    "B B B B G G G G G G H H H H H";
     margin-top: 60px;
     gap:30px;
     

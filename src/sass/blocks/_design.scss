@@ -121,15 +121,28 @@
     }
     
 }
-@media (max-width: 500px){
+
+@media (max-width: 600px){
     #design{
         .design_wrapper{
             .design_item{
                 grid-template-columns: 1fr;
-                grid-template-rows: 1fr 1fr;
+                grid-template-rows: 200px 1fr;
                 margin-left: 0px;
+                position: relative;
+                left:0;
+                padding: 15px;
+                justify-items: center;
+                align-items: start;
+
                 .item_img{
-                    left: -120px;
+
+                    position: relative;
+                    left:0;
+                }
+                .design_item_text{
+                    padding: 0px 0px 0px 0;
+                    text-align: center;
                 }
             }
         }
