@@ -15,9 +15,9 @@
     .advantages_list{
         display: grid;
         grid-template-areas:
-    "A A A A   B B B B   C C C C"
-    "D D D D D D E E E E E E"
-    "F F F F G G G G H H H H";
+    "B B B B B B G G G G G G"
+    "B B B B B B G G G G G G"
+    ". . . H H H H H H . . .";
     margin-top: 60px;
     gap:30px;
     
@@ -56,24 +56,10 @@
             }
         }
 
-        &.box-1{
-            grid-area: A;
-        }
         &.box-2{
             grid-area: B;
         }
-        &.box-3{
-            grid-area: C;
-        }
-        &.box-4{
-            grid-area: D;
-        }
-        &.box-5{
-            grid-area: E;
-        }
-        &.box-6{
-            grid-area: F;
-        }
+        
         &.box-7{
             grid-area: G;
         }
@@ -86,4 +72,14 @@
     }
     
     
+}
+@media (max-width: 1000px) {
+    #advantages{
+        .advantages_list{
+            grid-template-areas:
+            "B B B B B B B B B B B B"
+            "G G G G G G G G G G G G"
+            "H H H H H H H H H H H H";
+        }
+    }
 }
