@@ -41,3 +41,14 @@
        
     
 }
+@media (max-width: 600px){
+    #offer{
+        .offer_wrapper{
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr;
+            justify-items: center;
+            gap: 50px;
+        }
+    }
+    
+}
