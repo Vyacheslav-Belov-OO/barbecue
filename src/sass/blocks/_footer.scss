@@ -27,12 +27,14 @@
                 align-items:center;
                 justify-content: center;
                 font-size: 40px;
+                grid-area: 1;
             }
             .icon_mame{
                 margin-top: 15px;
                 font-size: 16px;
                 color:black;
                 text-align: center;
+                grid-area: 2;
             }
             &.box_1{
                 grid-area: A;
@@ -54,6 +56,7 @@
                 font-size: 16px;
                 text-align: center;
                 font-weight: 600;
+                grid-area: 3;
                 a{
                     text-decoration: none;
                     color:rgb(71,85,102);
@@ -80,11 +83,36 @@
 }
 @media (max-width: 500px) {
     #footer{
+        margin-top: 0;
+        
         .footer_wrapper{
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(5, 1fr);
             grid-template-areas: 
-            "A A A A A A B B B B B B"
-            "C C C C C C D D D D D D"
-            ". . . E E E E E E . . .";
+            "A"
+            "B"
+            "C"
+            "D"
+            "E";
+            .footer_item{
+                display: grid;
+                grid-template-columns: 100px auto;
+                
+                grid-template-areas: 
+                                "A B"
+                                "A C";
+                .icom{
+                    grid-area: A;
+                }
+                .icon_mame{
+                    grid-area: B;
+                    text-align: left;
+                } 
+                .footer_item_descr{
+                    grid-area: C;
+                    text-align: left;
+                }
+            }
         }
     }
 }
