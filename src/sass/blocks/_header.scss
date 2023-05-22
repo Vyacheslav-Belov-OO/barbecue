@@ -55,9 +55,11 @@
                     font-size:15px;
                     font-weight: 600;
                     text-transform: uppercase;
-                    color: white;
+                    color: hsl(213.33, 18%, 49%);
                     text-decoration: none;
                     border: 1px solid white;
+                    cursor: pointer;
+                    
                     &:hover{
                         color:#526276;
                         background-color:white;

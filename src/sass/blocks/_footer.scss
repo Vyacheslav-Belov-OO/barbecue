@@ -67,3 +67,24 @@
         }
     }
 }
+
+@media (max-width: 700px) {
+    #footer{
+        .footer_wrapper{
+            grid-template-areas: 
+            "A A A A A A B B B B B B"
+            "C C C C C C D D D D D D"
+            ". . . E E E E E E . . .";
+        }
+    }
+}
+@media (max-width: 500px) {
+    #footer{
+        .footer_wrapper{
+            grid-template-areas: 
+            "A A A A A A B B B B B B"
+            "C C C C C C D D D D D D"
+            ". . . E E E E E E . . .";
+        }
+    }
+}

@@ -98,3 +98,40 @@
     }
     
 }
+@media (max-width: 1000px) {
+    #design{
+        .design_wrapper{
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(6, 1fr);
+            gap: 20;
+
+            .design_item{
+                background-color: rgba(82,98,118,.1);
+                margin-left: 110px;
+                .item_img{
+                    left: -120px;
+                }
+                .design_item_text{
+                    background-color:transparent;
+                    padding: 50px 40px 50px 0px;
+                }
+            }
+            
+        }
+    }
+    
+}
+@media (max-width: 500px){
+    #design{
+        .design_wrapper{
+            .design_item{
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 1fr;
+                margin-left: 0px;
+                .item_img{
+                    left: -120px;
+                }
+            }
+        }
+    }
+}
