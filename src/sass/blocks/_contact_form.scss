@@ -116,5 +116,11 @@
 @media (max-width: 600px){
     #contact_form{
         padding: 100px 0 0 0;
+        .contact_form_wrapper{
+            .form{
+                padding: 14px 0px;
+            }
+        }
+        
     }
 }
