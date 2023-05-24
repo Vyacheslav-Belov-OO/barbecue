@@ -5,7 +5,28 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 document.addEventListener('DOMContentLoaded', function () {
-  var menu = document.querySelector('.menu_top_header'); // const modal = document.querySelector('#order');
+  var menu = document.querySelector('.menu_top_header');
+  var modal = document.querySelector('#order');
+  var submitButtom = document.querySelectorAll('.submit_button');
+  var popupCloseIcon = document.querySelector('.popup__close');
+  var popupOverlay = document.querySelector('.popup__overlay'); // Open modal
+
+  submitButtom.forEach(function (btn, i) {
+    btn.addEventListener('click', function () {
+      modal.classList.add('popup_show');
+      modal.style.visibility = 'visible';
+      console.log(1);
+    });
+  }); //Close Modal
+
+  popupCloseIcon.addEventListener('click', function () {
+    modal.classList.remove('popup_show');
+    modal.style.visibility = 'hidden';
+  });
+  popupOverlay.addEventListener('click', function () {
+    modal.classList.remove('popup_show');
+    modal.style.visibility = 'hidden';
+  }); // const modal = document.querySelector('#order');
   // const submit = document.querySelectorAll('.submit');
   // const btn = document.querySelector('#123');
   // btn.addEventListener('click', (event)=>{
@@ -13,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
   //   console.log(111);
   // })
   // modal.style.visibility = 'visible';
-  // submit.forEach((btn, i) => {
+  // submit.forEach(c => {
   //   btn.addEventListener('click', (event) => {
   //     event.preventDefault();
   //     modal.style.visibility = 'visible';

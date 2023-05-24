@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Могал очаг</title>             
+    <title>Мангал очаг</title>             
     <link rel="stylesheet" href="dist/css/font.css" />
     <link rel="stylesheet" href="dist/css/style.min.css" />    
     <link href="fontawesome/css/fontawesome.css" rel="stylesheet">
@@ -30,7 +30,7 @@
               <li class="menu_item"><a href="#design" class="menu_item_link">Дизайн очагов</a></li>
               <li class="menu_item"><a href="#advantages" class="menu_item_link">Преимущества</a></li>
               <li class="menu_item"><a href="#photo" class="menu_item_link">Фотографии</a></li>
-              <li class="menu_item"><a href="#barbeque" class="menu_item_link">Монгал-очаги</a></li>
+              <li class="menu_item"><a href="#barbeque" class="menu_item_link">Мангал-очаги</a></li>
               <li class="menu_item"><a href="#footer" class="menu_item_link">Контакты</a></li>
             </ul>
           </nav>
@@ -40,7 +40,7 @@
               <li class="menu_item"><a href="#design" class="menu_item_link">Дизайн очагов</a></li>
               <li class="menu_item"><a href="#advantages" class="menu_item_link">Преимущества</a></li>
               <li class="menu_item"><a href="#photo" class="menu_item_link">Фотографии</a></li>
-              <li class="menu_item"><a href="#barbeque" class="menu_item_link">Монгал-очаги</a></li>
+              <li class="menu_item"><a href="#barbeque" class="menu_item_link">Мангал-очаги</a></li>
               <li class="menu_item"><a href="#footer" class="menu_item_link">Контакты</a></li>
             </ul>
           </nav>
@@ -56,7 +56,7 @@
               <div class="descr">Загородный стиль жизни</div>
               <div class="slogan_buttons">
                 <a href="#about" class="more">Подробнее</a>
-                <button class="submit" >Оставить заявку</button>                
+                <button class="submit submit_button popup-link" >Оставить заявку</button>                
               </div>
             </div>            
           </div> 
@@ -122,7 +122,7 @@
             </div>            
           </div>
         </div>
-        <a href="" class="submit">Оставить заявку</a>               
+        <button class="submit submit_button" >Оставить заявку</button>               
       </div>
     </section>
     <section class="advantages" id="advantages">
@@ -168,7 +168,7 @@
             <div class="adv_slogan_wrapper">
               <div class="sale">SALE!</div>
               <div class="offer">РЕШЁТКА ДЛЯ ГРИЛЯ В ПОДАРОК!</div>
-              <a href="" class="submit">Оставить заявку</a>
+              <button class="submit submit_button" >Оставить заявку</button>
             </div>            
           </div>
           <div class="adv_img"></div>
@@ -240,7 +240,7 @@
             <div class="barbeque_size_descr">Высота - 510 мм</br>Вес - 200 кг</div>
             <div class="barbeque_prise_title">ЦЕНА:</div>
             <div class="barbeque_prise_descr">Диаметр 182 см -200 000 руб.</div>
-            <a href="" class="submit">Оставить заявку</a>
+            <button class="submit submit_button" >Оставить заявку</button>
           </div>
           <div class="barbeque_img"></div>
         </div>
@@ -262,7 +262,7 @@
             <div class="barbeque_size_descr">Высота - 510 мм</br>Вес - 170 кг</div>
             <div class="barbeque_prise_title">ЦЕНА:</div>
             <div class="barbeque_prise_descr">Диаметр 168 см - 150 000 руб.</div>
-            <a href="" class="submit">Оставить заявку</a>
+            <button class="submit submit_button" >Оставить заявку</button>
           </div>          
         </div>
         <div class="barbeque_wrapper">
@@ -282,7 +282,7 @@
             <div class="barbeque_size_descr">Высота - 510 мм</br>Вес - 150 кг</div>
             <div class="barbeque_prise_title">ЦЕНА:</div>
             <div class="barbeque_prise_descr">Диаметр 152 см - 150 000 руб.</div>
-            <a href="" class="submit" id="123">Оставить заявку</a>             
+            <button class="submit submit_button" >Оставить заявку</button>             
           </div>
           <div class="barbeque_img third"></div>
         </div>
@@ -368,24 +368,26 @@
       </div>
     </section>
     <!-- Модальное окно -->
-    <!-- <div class="popup" id="order"  data-scroll-lock-scrollable="">
-        <div class="popup__box">
-          <div class="section__title section__title_alone">ЗАКАЗАТЬ Д-001</div>
-          <form action="#" class="discount__form form form_send form_feedback">
-              <input type="hidden" name="title" value="Заказать арт. пр-01">
-              <input type="hidden" name="UTM" value="">
-              <input class="form__input" type="text" name="name" placeholder="Имя" autocomplete="off" required="">
-              <input class="form__input form__input_phone" type="tel" name="phone" placeholder="Телефон" autocomplete="off" required="">
-              <input class="form__input" type="email" name="email" placeholder="E-mail" autocomplete="off" required="">
-              <button class="form__button feedback__button button" type="submit">Заказать</button>
-              <input class="form__chekbox" type="checkbox" name="privacy-checkbox" id="popup2-checkbox" required="" checked>
-              <label class="form__chekbox_label feedback__privacy" for="popup2-checkbox" >Нажимая кнопку «Отправить», я даю свое согласие на обработку моих персональных данных, в соответствии с Федеральным законом от 27.07.2006 года №152-ФЗ «О персональных данных», на условиях и для целей, определенных в Согласии на обработку персональных данных</label>
-          </form>
-          <div class="popup__close"><div class="popup__close-icon"></div>
+    
+    <div class="popup" id="order"  data-scroll-lock-scrollable="">
+      <div class="popup__box">
+        <div class="section__title section__title_alone">ЗАКАЗАТЬ МАНГАЛ-ОЧАГ</div>
+        <form action="#" class="discount__form form form_send form_feedback">
+            <input type="hidden" name="title" value="Заказать арт. пр-01">
+            <input type="hidden" name="UTM" value="">
+            <input class="form__input" type="text" name="name" placeholder="Имя" autocomplete="off" required="" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+            <input class="form__input form__input_phone" type="tel" name="phone" placeholder="Телефон" autocomplete="off" required="">
+            <input class="form__input" type="email" name="email" placeholder="E-mail" autocomplete="off" required="">
+            <button class="form__button feedback__button button" type="submit">Заказать</button>
+            <input class="form__chekbox" type="checkbox" name="privacy-checkbox" id="popup2-checkbox" required="">
+            <label class="form__chekbox_label feedback__privacy" for="popup2-checkbox">Нажимая кнопку «Отправить», я даю свое согласие на обработку моих персональных данных, в соответствии с Федеральным законом от 27.07.2006 года №152-ФЗ «О персональных данных», на условиях и для целей, определенных в Согласии на обработку персональных данных</label>
+        </form>
+        <div class="popup__close">
+          <div class="popup__close-icon"></div>
         </div>
       </div>
       <div class="popup__overlay"></div>
-    </div> -->
+    </div>
     <script>
       async function submitForm(event) {
         event.preventDefault(); // отключаем перезагрузку/перенаправление страницы
@@ -419,6 +421,8 @@
       </script>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
+    <!-- <script type="text/javascript" src="js/modal.js"></script>
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script> -->
     <script>
       Fancybox.bind("[data-fancybox]", {
   // Your custom options

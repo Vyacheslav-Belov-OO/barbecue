@@ -172,6 +172,17 @@ a.popup__link {
     border-bottom: 1px solid #0E2336;
 }
 
+.section__title {
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 1.2em;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #526276;
+    display: block;
+    margin-bottom: 40px;
+}
+
 
 @media (hover: hover) {
     .popup__content a:hover {
@@ -182,4 +193,10 @@ a.popup__link {
         border-bottom: 1px solid rgba(255,255,255,0);	
         filter: brightness(150%);
     }
+}
+@media screen and (max-width:767px) {
+    .form {
+        display: block !important;
+    }
+	.form__button {margin-top: 24px;}
 }

@@ -2,6 +2,34 @@
 
 document.addEventListener('DOMContentLoaded', () =>{
   const menu = document.querySelector('.menu_top_header');
+  const modal = document.querySelector('#order');
+  const submitButtom =document.querySelectorAll('.submit_button');
+  const popupCloseIcon = document.querySelector('.popup__close');
+  const popupOverlay= document.querySelector('.popup__overlay');
+
+  // Open modal
+
+  
+
+  submitButtom.forEach((btn, i)=> {
+    btn.addEventListener('click', () => {
+      modal.classList.add('popup_show');
+      modal.style.visibility = 'visible';
+      console.log(1);
+    })
+  })
+
+  //Close Modal
+  popupCloseIcon.addEventListener('click', () => {
+    modal.classList.remove('popup_show');
+    modal.style.visibility = 'hidden';
+  })
+
+  popupOverlay.addEventListener('click', () => {
+    modal.classList.remove('popup_show');
+    modal.style.visibility = 'hidden';
+  })
+
   // const modal = document.querySelector('#order');
   // const submit = document.querySelectorAll('.submit');
   // const btn = document.querySelector('#123');
@@ -12,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () =>{
   // })
   
   // modal.style.visibility = 'visible';
-  // submit.forEach((btn, i) => {
+  // submit.forEach(c => {
   //   btn.addEventListener('click', (event) => {
   //     event.preventDefault();
   //     modal.style.visibility = 'visible';
