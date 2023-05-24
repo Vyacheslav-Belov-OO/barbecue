@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', function () {
   var popupCloseIcon = document.querySelector('.popup__close');
   var popupOverlay = document.querySelector('.popup__overlay'); // Open modal
 
+  function openModal() {}
+
   submitButtom.forEach(function (btn, i) {
     btn.addEventListener('click', function () {
       modal.classList.add('popup_show');

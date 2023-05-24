@@ -10,7 +10,9 @@ document.addEventListener('DOMContentLoaded', () =>{
   // Open modal
 
   
+function openModal ()  {
 
+}
   submitButtom.forEach((btn, i)=> {
     btn.addEventListener('click', () => {
       modal.classList.add('popup_show');
