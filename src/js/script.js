@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', () =>{
   const menu = document.querySelector('.menu_top_header');
   const modal = document.querySelector('#order');
   const submitButtom =document.querySelectorAll('.submit_button');
-  const popupCloseIcon = document.querySelector('.popup__close-icon');
+  const popupCloseIcon = document.querySelector('.popup__close');
+  const popupOverlay= document.querySelector('.popup__overlay');
 
   // Open modal
 
@@ -20,6 +21,11 @@ document.addEventListener('DOMContentLoaded', () =>{
 
   //Close Modal
   popupCloseIcon.addEventListener('click', () => {
+    modal.classList.remove('popup_show');
+    modal.style.visibility = 'hidden';
+  })
+
+  popupOverlay.addEventListener('click', () => {
     modal.classList.remove('popup_show');
     modal.style.visibility = 'hidden';
   })

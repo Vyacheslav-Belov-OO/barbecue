@@ -194,3 +194,9 @@ a.popup__link {
         filter: brightness(150%);
     }
 }
+@media screen and (max-width:767px) {
+    .form {
+        display: block !important;
+    }
+	.form__button {margin-top: 24px;}
+}

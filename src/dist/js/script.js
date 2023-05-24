@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
   var menu = document.querySelector('.menu_top_header');
   var modal = document.querySelector('#order');
   var submitButtom = document.querySelectorAll('.submit_button');
-  var popupCloseIcon = document.querySelector('.popup__close-icon'); // Open modal
+  var popupCloseIcon = document.querySelector('.popup__close');
+  var popupOverlay = document.querySelector('.popup__overlay'); // Open modal
 
   submitButtom.forEach(function (btn, i) {
     btn.addEventListener('click', function () {
@@ -19,6 +20,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }); //Close Modal
 
   popupCloseIcon.addEventListener('click', function () {
+    modal.classList.remove('popup_show');
+    modal.style.visibility = 'hidden';
+  });
+  popupOverlay.addEventListener('click', function () {
     modal.classList.remove('popup_show');
     modal.style.visibility = 'hidden';
   }); // const modal = document.querySelector('#order');
