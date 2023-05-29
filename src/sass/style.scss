@@ -31,12 +31,28 @@ body{
     color: #526276;
 }
 
+.content {
+	margin: auto;
+	padding: 20px;
+	width: 100%;
+}
+.center .slick-center h3 {
+	transform: scale(1);
+}
+
+.owl-carousel .owl-item img {
+    height: 200px;
+    object-fit: cover;
+}
+
 @media (max-width: 768px) {
     .container{
         max-width: calc(100% - 30px);
         padding: 0 10px;
     }
 }
+
+
 
 
 
@@ -55,6 +71,10 @@ body{
 @import 'blocks/footer.scss';
 @import 'blocks/menu.scss';
 @import 'blocks/modal.scss';
+@import 'blocks/stone.scss';
+@import 'blocks/slick.scss';
+@import 'blocks/slick-theme.scss';
+
 
 
 

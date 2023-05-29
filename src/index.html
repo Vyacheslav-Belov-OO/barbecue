@@ -12,11 +12,14 @@
     <link href="fontawesome/css/solid.css" rel="stylesheet">
     <link href="fontawesome/css/regular.css" rel="stylesheet">
     <link rel="icon" href="./img/logo_small_dark.svg" type="image/x-icon" />
-    <link type="Image/x-icon" href="./img/favicon.ico" rel="icon">
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
-    />
+    <link type="Image/x-icon" href="./img/favicon.ico" rel="icon">    
+    <link  rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+
+    <link href="https://assets.codepen.io/2054761/owl.carousel.min.css" rel="stylesheet">
+    <link href="https://assets.codepen.io/2054761/owl.theme.default.min.css" rel="stylesheet">
+    <link href="https://assets.codepen.io/2054761/lightbox.min.css" rel="stylesheet">
+
+  
   </head>
 
   <body>
@@ -95,7 +98,7 @@
             <div class="item_img img-2"></div>            
             <div class="design_item_text">            
               <h6 class="item_title">Безопасность</h6>
-              <p class="item_descr">Столешнице  вокруг очага изготовлена из искусственного камня премиум сегмента, 8 цветовых решении, из них 4 варианта Premium сегмента с шикарной текстурой натурального камня.</p>
+              <p class="item_descr">Столешнице  вокруг очага изготовлена из искусственного камня, 8 цветовых решений, из них 4 варианта Premium сегмента с шикарной текстурой натурального камня.</p>
             </div>            
           </div>
           <div class="design_item">
@@ -164,6 +167,39 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+    <section class="stone" id="stone">
+      <div class="container">
+        <div class="design_header">
+          <h2 class="design_title">ВЫБИРИТЕ СВОЮ СТОЛЕШНИЦУ</h2>
+        </div>
+        <div class="testing owl-carousel owl-theme">
+          <a href="./img/A-426 Onyx_Blizko.jpg" data-lightbox="image-set">
+            <img src="./img/A-426 Onyx_Blizko.jpg" alt="">
+          </a>
+          <a href="./img/A-403.jpg" data-lightbox="image-set" data-title="My caption 2">
+            <img src="./img/A-403.jpg" alt="">
+          </a>
+          <a href="./img/J-510.jpg" data-lightbox="image-set" data-title="My caption 3">
+            <img src="./img/J-510.jpg" alt="">
+          </a>
+          <a href="./img/A-401.jpg" data-lightbox="image-set" data-title="My caption 4">
+            <img src="./img/A-401.jpg" alt="">
+          </a>
+          <a href="./img/A-401.jpg" data-lightbox="image-set" data-title="My caption 5">
+              <img src="./img/A-401.jpg" alt="">
+          </a>
+          <a href="./img/M-723 Timber Wolf_Blizko.jpg" data-lightbox="image-set" data-title="My caption 6">
+              <img src="./img/M-723 Timber Wolf_Blizko.jpg" alt="">
+          </a>
+          <a href="./img/M-717-A.jpg" data-lightbox="image-set" data-title="My caption 6">
+            <img src="./img/M-717-A.jpg" alt="">
+          </a>
+          <a href="./img/M-719-A.jpg" data-lightbox="image-set" data-title="My caption 6">
+            <img src="./img/M-719-A.jpg" alt="">
+          </a>
+      </div>
       </div>
     </section>
     <section class="adv" id="adv">
@@ -425,6 +461,7 @@
       }
       </script>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/carousel/carousel.umd.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
     <!-- <script type="text/javascript" src="js/modal.js"></script>
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script> -->
@@ -455,11 +492,43 @@
         closeModal();
       }
     </script>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="./js/slick.min.js"></script>
+
+<script src="https://assets.codepen.io/2054761/jquery.min.js"></script>
+<script src="https://assets.codepen.io/2054761/owl.carousel.min.js"></script>
+<!-- <script src="https://assets.codepen.io/2054761/owl-carousels.js"></script> -->
+<script src="https://assets.codepen.io/2054761/lightbox.min.js"></script></script>
+<script type="text/javascript">
+  $('.testing').owlCarousel({
+    // center: true,
+    loop:false,
+    margin:10,
+    nav:true,
+    // autoplay:false,
+    // autoplayTimeout:5000,
+    // autoplayHoverPause:false,
+    responsive:{
+        0:{
+            items:2
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:5
+        }
+    }
+})
+lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true
+    })
+</script>
+
   </body>
 </html>
 
 
-
-<b></b>
-<span></span>
-</br>
