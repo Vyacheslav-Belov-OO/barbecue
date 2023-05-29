@@ -77,3 +77,12 @@
        
     }
 }
+@media (max-width: 600px){
+    #photo {
+        .photo_slagan_wrapper{
+            .photo_slider_wrapper{
+                gap:5px;
+            }
+        }
+    }
+}
