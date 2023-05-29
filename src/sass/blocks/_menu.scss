@@ -13,7 +13,8 @@
             background-size:cover;
         }
         .mobile_menu{
-            display: none;
+            display: block;
+            
         }
 
         .menu_list{
@@ -130,26 +131,60 @@
 @media (max-width: 1000px) {
     .menu_top_header{
         .header_wrapper{
+            .logo{
+                height: 54px !important;
+                background-size:contain;
+                background-repeat: no-repeat;
+            }    
             .menu{
                 display: none;
+                .menu_list{
+                    display: none;
+                }
             }
-            .mobile_menu{
+            .burger{
                 display: block;
                 width: 24px;
                 height: 24px;
-                background-image: url(../../img/mob-menu.svg);
+                background-image: url(../../img/menu.svg);
                 background-repeat: no-repeat;
                 background-size: contain;
                 background-position: center center;
-                position: absolute;
-                right: 20px;
-                top: 24px;
                 cursor: pointer;
-                filter: grayscale(80%);
+                &.white{
+                    background-image: url(../../img/mob-menu.svg);
+                }
             }
-            .menu_list{
-                display: none;
+            .mobile_menu{                                
+                background-color:white;
+                display: block;
+                position: fixed;
+                top: 69px;
+                width: 100vw;
+                left: 0;
+                height: 290px;
+                padding: 30px;
+                
+                .menu_list{
+                    grid-template-columns: 1fr;
+                    grid-template-rows: repeat(6,auto);
+                    .menu_item{
+                        padding: 6px;
+                        color: black;
+                        &:hover{
+                            background-color:#526276;
+                            color: black;
+                        }
+                        .menu_item_link{
+                            
+                           
+                        }
+                    }
+                }
+                
+                
             }
+            
         }
     }
     

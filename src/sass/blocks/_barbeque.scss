@@ -15,7 +15,7 @@
         justify-content: center;
         gap:20px;
         .barbeque_descr{
-        
+            
             .barbeque_title{
                 font-size: 28px;
                 font-weight: 600;
@@ -71,7 +71,9 @@
             width: 100%;
             height: 373px;
             background-image: url(../../img/big.jpg);
-            background-size:cover;
+            background-size: contain;
+            background-repeat: no-repeat;
+            
             &.second{
                 background-image: url(../../img/zolnik.jpg);
             }
@@ -85,17 +87,25 @@
 
 @media (max-width: 600px){
    #barbeque{
-    .barbeque_wrapper{
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr  1fr;
-        margin-top: 20px;
-        gap:0;
-    }
-    .barbeque_wrapper{
-        .barbeque_img {
-            background-size: contain;
-            background-repeat: no-repeat;
-        }
-    }    
+        .barbeque_wrapper{
+            grid-template-areas: 
+            "B"
+            "A";
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+            margin-top: 20px;
+            gap:10px;
+            margin-bottom: 30px;
+            .barbeque_descr{
+                grid-area: A;
+            }
+            .barbeque_img {
+                width: 300px;
+                height: 240px;
+                grid-area: B;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+        }      
    }
 }

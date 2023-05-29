@@ -2,6 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', () =>{
   const menu = document.querySelector('.menu_top_header');
+  const burger = document.querySelector('.burger');
   // const modal = document.querySelector('#order');
   // const submit = document.querySelectorAll('.submit');
   // const btn = document.querySelector('#123');
@@ -19,14 +20,17 @@ document.addEventListener('DOMContentLoaded', () =>{
   //     console.log(111);
   //   })
   // })
+  console.log(burger);
   
  
   window.addEventListener('scroll', e => {
     if(window.scrollY >= 100) {
       menu.classList.add('sticky');
+      burger.classList.add('white');
     }
     else {
       menu.classList.remove('sticky');
+      burger.classList.remove('white');
     }
   });
 

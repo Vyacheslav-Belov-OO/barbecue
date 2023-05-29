@@ -5,7 +5,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 document.addEventListener('DOMContentLoaded', function () {
-  var menu = document.querySelector('.menu_top_header'); // const modal = document.querySelector('#order');
+  var menu = document.querySelector('.menu_top_header');
+  var burger = document.querySelector('.burger'); // const modal = document.querySelector('#order');
   // const submit = document.querySelectorAll('.submit');
   // const btn = document.querySelector('#123');
   // btn.addEventListener('click', (event)=>{
@@ -21,11 +22,14 @@ document.addEventListener('DOMContentLoaded', function () {
   //   })
   // })
 
+  console.log(burger);
   window.addEventListener('scroll', function (e) {
     if (window.scrollY >= 100) {
       menu.classList.add('sticky');
+      burger.classList.add('white');
     } else {
       menu.classList.remove('sticky');
+      burger.classList.remove('white');
     }
   });
 
