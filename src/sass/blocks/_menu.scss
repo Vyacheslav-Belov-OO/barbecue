@@ -14,6 +14,7 @@
         }
         .mobile_menu{
             display: none;
+            
         }
 
         .menu_list{
@@ -25,14 +26,16 @@
             .menu_item {
                 list-style: none;
                 
-                .menu_item_link{
-                    font-size: 14px;
+                }
+                
+                .menu_item_link{                    font-size: 14px;
                     color:white;
                     text-transform: uppercase;
                     text-decoration: none;
                     &:hover{
                         color:hsla(0, 0%, 86%, 1);
-                    }
+                    
+                    
                 }
             }
         }
@@ -59,11 +62,14 @@
     .menu_item {
         list-style: none;
         
+        
         .menu_item_link{
-            color:black !important;
+            
             text-transform: uppercase;
             text-decoration: none;
+            color:#526276;
             &:hover{
+                color: #9d9d9d;
                 text-decoration: underline;
             }
         }
@@ -129,11 +135,32 @@
 }
 @media (max-width: 1000px) {
     .menu_top_header{
+        top: 0;
+    position: fixed;        
+    background-color:white;        
+    width: 100%;    
+    z-index: 1;
+    border-bottom: 1px solid #d9d9d9;
+    .logo {
+        width: 100px !important;
+        height: 40px !important;
+        background-size:contain;
+        background-repeat: no-repeat;
+        filter: brightness(55%);                        
+    }
         .header_wrapper{
+            .logo{
+                height: 54px !important;
+                background-size:contain;
+                background-repeat: no-repeat;
+            }    
             .menu{
                 display: none;
+                .menu_list{
+                    display: none;
+                }
             }
-            .mobile_menu{
+            .burger{
                 display: block;
                 width: 24px;
                 height: 24px;
@@ -141,15 +168,58 @@
                 background-repeat: no-repeat;
                 background-size: contain;
                 background-position: center center;
-                position: absolute;
-                right: 20px;
-                top: 24px;
                 cursor: pointer;
-                filter: grayscale(80%);
+                &.white{
+                    background-image: url(../../img/mob-menu.svg);
+                }
+                &.open{
+                    background-image: url(../../img/burger-close.svg);
+                }
             }
-            .menu_list{
-                display: none;
+            .mobile_menu{                                
+                background-color:white;
+                display: none ;
+                position: fixed;
+                top: 85px;
+                width: 100vw;
+                left: 0;
+                height: 290px;
+                padding: 30px;
+                &.toggle{
+                    display: block;
+                    z-index: 1;
+                }
+                
+                .menu_list{
+                    grid-template-columns: 1fr;
+                    grid-template-rows: repeat(6,auto);
+                    display: block;
+                    .menu_item{
+                        display: flex[];
+                        
+                        &:hover{
+                            
+                            color: white;
+                        }
+                        .menu_item_link{
+                           text-decoration: none;                           
+                           color: black;
+                           transition: 0.3s;
+                           padding: 12px 24px;
+                           display: block;
+                           width: 100%;
+                           &:hover{
+                            transition: 0.3s;
+                            margin-left: 20px;
+                            
+                        }
+                        }
+                    }
+                }
+                
+                
             }
+            
         }
     }
     

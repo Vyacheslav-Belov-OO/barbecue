@@ -87,15 +87,24 @@
    #barbeque{
     .barbeque_wrapper{
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr  1fr;
-        margin-top: 20px;
-        gap:0;
-    }
-    .barbeque_wrapper{
+        grid-template-rows: auto  auto;
+        margin-top: 30px;
+        gap:20px;
+        grid-template-areas: 
+        "B"
+        "A";
+        .barbeque_descr{
+            grid-area: A;
+        }
         .barbeque_img {
+            
+            height: 200px;
             background-size: contain;
             background-repeat: no-repeat;
+            background-position-x: 50%;
+            grid-area: B;
         }
-    }    
+    }
+    
    }
 }

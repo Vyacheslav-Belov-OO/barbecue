@@ -6,6 +6,20 @@ document.addEventListener('DOMContentLoaded', () =>{
   const submitButtom =document.querySelectorAll('.submit_button');
   const popupCloseIcon = document.querySelector('.popup__close');
   const popupOverlay= document.querySelector('.popup__overlay');
+  const burger = document.querySelector('.burger');
+  const mobile_menu = document.querySelector('#mobile_menu');
+
+
+  burger.addEventListener('click', () =>{
+    mobile_menu.classList.toggle('toggle');
+    burger.classList.toggle('open');
+    
+  })
+
+  mobile_menu.addEventListener('click', ()=> {
+    mobile_menu.classList.toggle('toggle');
+    burger.classList.toggle('open');
+  })
 
   // Open modal
 
@@ -54,9 +68,11 @@ function openModal ()  {
   window.addEventListener('scroll', e => {
     if(window.scrollY >= 100) {
       menu.classList.add('sticky');
+      burger.classList.add('white');
     }
     else {
       menu.classList.remove('sticky');
+      burger.classList.remove('white');
     }
   });
 
