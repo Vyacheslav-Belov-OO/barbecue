@@ -23,11 +23,12 @@
         display: grid;
         gap: 30px;
         grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
         grid-template-areas:
         "A A A B B B"
         "A A A C C C"
-        "D D E E F F";
+        "D D E E F F"
+        "G G H H I I";
         .single_photo_wrapper{           
             overflow: hidden;            
            
@@ -49,6 +50,15 @@
             }
             &.slide6{
                 grid-area: F;
+            }
+            &.slide7{
+                grid-area: G;
+            }
+            &.slide8{
+                grid-area: H;
+            }
+            &.slide9{
+                grid-area: I;
             }
 
             .photo_slide{                
