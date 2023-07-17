@@ -1,12 +1,33 @@
 #top {
-    min-height: 880px;
-    background: url(../../img/Bez-imeni-1_1x.jpg);    
+    // position: relative;
+    min-height: 840px;
+    
     background-position-x: 50%;
     background-position-y: 50%;
     background-size:cover;
     margin-top: -95px;
     padding: 400px 0 0 0 ;
+    z-index: 2;
+
+    .back{
+        width: 100%;
+        height: 100%;
+        background-color:black;
+    }
     
+    .background-video {       
+        height: 92vh;
+        width: 100vw;        
+        object-fit: cover;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 95px;
+        bottom: 0;
+        z-index: 0;
+        filter: brightness(75%);
+      }
+      
 
     .header {
         .slogan_wrapper{
@@ -72,4 +93,11 @@
 
     }
 
+}
+@media (max-width: 750px) {
+    #top{
+        background: url(../../img/Bez-imeni-1_1x.jpg);    
+        .background-video { display: none; }
+    }
+    
 }
