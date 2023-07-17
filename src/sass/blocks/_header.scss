@@ -1,13 +1,16 @@
 #top {
     // position: relative;
-    min-height: 840px;
+    min-height: 100vh;
     
     background-position-x: 50%;
     background-position-y: 50%;
     background-size:cover;
     margin-top: -95px;
-    padding: 400px 0 0 0 ;
+    padding: 500px 0 0 0 ;
     z-index: 2;
+    position: relative;
+    display: flex;
+    justify-content: center;
 
     .back{
         width: 100%;
@@ -30,6 +33,9 @@
       
 
     .header {
+        position: absolute;
+        bottom: -49px;
+        width: 100%;
         .slogan_wrapper{
             
             display: flex;
@@ -98,6 +104,9 @@
     #top{
         background: url(../../img/Bez-imeni-1_1x.jpg);    
         .background-video { display: none; }
+        .header{
+            bottom: auto;
+        }
     }
     
 }
