@@ -3,7 +3,7 @@
     top: 0;
     position: fixed;            
     width: 100%;    
-    z-index: 1;
+    z-index: 3;
     
     .header_wrapper{
         display: flex;
@@ -56,7 +56,7 @@
     position: fixed;        
     background-color:white;        
     width: 100%;    
-    z-index: 1;
+    z-index: 3;
     border-bottom: 1px solid #d9d9d9;
     .logo {
         width: 100px !important;
@@ -145,7 +145,7 @@
     position: fixed;        
     background-color:white;        
     width: 100%;    
-    z-index: 1;
+    z-index: 3;
     border-bottom: 1px solid #d9d9d9;
     .logo {
         width: 100px !important;
