@@ -1,4 +1,7 @@
 <?php
+// Устанавливаем заголовок Content-Type для JSON
+header('Content-Type: application/json');
+
 // Файлы phpmailer
 require 'phpmailer/PHPMailer.php';
 require 'phpmailer/SMTP.php';
@@ -98,7 +101,11 @@ if (!error_get_last()) {
         $data['info'] = "Сообщение не было отправлено. Ошибка при отправке письма";
         $data['desc'] = "Причина ошибки: {$mail->ErrorInfo}";
     }
-    
+
+// Возвращаем данные в формате JSON
+echo json_encode($data);
+exit; // Прерываем выполнение скрипта, чтобы не было перенаправления
+
 } else {
     $data['result'] = "error";
     $data['info'] = "В коде присутствует ошибка";

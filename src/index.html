@@ -445,7 +445,7 @@
           <div class="form_title">Обратная связь</div>
           <div class="form_descr">Поделитесь мнением о нашей работе или задайте нам любой интересующий вас вопрос в поле
             комментарий</div>
-          <form enctype="multipart/form-data" method="post" id="form" onsubmit="return submitForm(event)" action="send.php"
+          <form enctype="multipart/form-data" method="post" id="form" onsubmit="submitForm(event); return false;" action="send.php"
             class="form">
             <input type="text" class="name" name="name" placeholder="Имя">
             <input type="text" class="surname" name="surname" placeholder="Фамилия">
@@ -509,7 +509,7 @@
   <div class="popup" id="order" data-scroll-lock-scrollable="">
     <div class="popup__box">
       <div class="section__title section__title_alone">ЗАКАЗАТЬ МАНГАЛ-ОЧАГ</div>
-      <form method="post" action="send.php" class="discount__form form form_send form_feedback" onsubmit="return submitForm(event)" id="orderForm">
+      <form method="post" action="send.php" class="discount__form form form_send form_feedback" onsubmit="submitForm(event); return false;" id="orderForm">
         <input type="hidden" name="model" value="Заказать арт. пр-01">
         <input type="hidden" name="text" value="Заказ мангал-очага из модального окна">
         <input class="form__input" type="text" name="name" id="order_name" placeholder="Имя" autocomplete="off" required=""
