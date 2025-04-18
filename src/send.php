@@ -8,22 +8,46 @@ require 'phpmailer/Exception.php';
 if (!error_get_last()) {
 
     // Переменные, которые отправляет пользователь
-    $name = $_POST['name'] ;
-    $surname = $_POST['surname'] ;
-    $phone = $_POST['phone'] ;
-    $email = $_POST['email'];
-    $text = $_POST['text'];
+    $name = isset($_POST['name']) ? $_POST['name'] : 'Не указано';
+    $surname = isset($_POST['surname']) ? $_POST['surname'] : '';
+    $phone = isset($_POST['phone']) ? $_POST['phone'] : 'Не указано';
+    $email = isset($_POST['email']) ? $_POST['email'] : 'Не указано';
+    $text = isset($_POST['text']) ? $_POST['text'] : 'Не указано';
     
-    
+    // Дополнительные поля, которые могут быть в форме
+    $model = isset($_POST['model']) ? $_POST['model'] : '';
+    $color = isset($_POST['color']) ? $_POST['color'] : '';
     
     // Формирование самого письма
-    $title = "Заголовок письма";
+    $title = "Заявка с сайта Мангал-очаг"; // Заголовок письма
+    
+    // Создаем тело письма
     $body = "
-    <h2>Новое письмо</h2>
+    <h2>Новая заявка с сайта</h2>
     <b>Имя:</b> $name<br>
-    <b>Почта:</b> $email<br><br>
-    <b>Сообщение:</b><br>$text
     ";
+    
+    // Добавляем фамилию, если она есть
+    if (!empty($surname)) {
+        $body .= "<b>Фамилия:</b> $surname<br>";
+    }
+    
+    $body .= "
+    <b>Телефон:</b> $phone<br>
+    <b>Почта:</b> $email<br>
+    ";
+    
+    // Добавляем модель, если она есть
+    if (!empty($model)) {
+        $body .= "<b>Модель:</b> $model<br>";
+    }
+    
+    // Добавляем цвет, если он есть
+    if (!empty($color)) {
+        $body .= "<b>Цвет столешницы:</b> $color<br>";
+    }
+    
+    $body .= "<br><b>Сообщение:</b><br>$text";
     
     // Настройки PHPMailer
     $mail = new PHPMailer\PHPMailer\PHPMailer();
@@ -55,8 +79,9 @@ if (!error_get_last()) {
     
     // Отправка сообщения
     $mail->isHTML(true);
-    $mail->Subject = $title;
-    $mail->Body = $body;    
+    $mail->Subject = "Заявка с сайта Мангал-очаг"; // Явно устанавливаем заголовок
+    $mail->Body = $body;
+    $mail->AltBody = strip_tags($body); // Текстовая версия письма для клиентов без HTML
     
     // Проверяем отправленность сообщения
     if ($mail->send()) {
