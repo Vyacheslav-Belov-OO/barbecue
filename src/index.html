@@ -369,7 +369,7 @@
           <div class="barbeque_size_descr">Высота - 510 мм</br>Диаметр 182 см</br>Вес - 200 кг</div>
           <div class="barbeque_prise_title">ЦЕНА:</div>
           <div class="barbeque_prise_descr"> 200 000 руб.</div>
-          <button class="submit submit_button">Оставить заявку</button>
+          <button class="submit submit_button" onclick="openOrderModal('Мангал-Очаг (Big1)')">Оставить заявку</button>
         </div>
         <div class="barbeque_img"></div>
       </div>
@@ -392,7 +392,7 @@
           <div class="barbeque_size_descr">Высота - 510 мм</br>Диаметр 168 см</br>Вес - 170 кг</div>
           <div class="barbeque_prise_title">ЦЕНА:</div>
           <div class="barbeque_prise_descr"> 150 000 руб.</div>
-          <button class="submit submit_button">Оставить заявку</button>
+          <button class="submit submit_button" onclick="openOrderModal('Мангал-Очаг (Big2)')">Оставить заявку</button>
         </div>
       </div>
       <div class="barbeque_wrapper">
@@ -411,7 +411,7 @@
           <div class="barbeque_size_descr">Высота - 510 мм</br>Диаметр 146 см</br>Вес - 150 кг</div>
           <div class="barbeque_prise_title">ЦЕНА:</div>
           <div class="barbeque_prise_descr">98 000 руб.</div>
-          <button class="submit submit_button">Оставить заявку</button>
+          <button class="submit submit_button" onclick="openOrderModal('Мангал-Очаг (Compact)')">Оставить заявку</button>
         </div>
         <div class="barbeque_img third"></div>
       </div>
@@ -796,6 +796,22 @@ lightbox.option({
       const popup = document.getElementById('success-popup');
       popup.classList.remove('popup_show');
       popup.style.visibility = 'hidden';
+    }
+    
+    // Функция для открытия модального окна с выбранной моделью
+    function openOrderModal(model) {
+      // Получаем модальное окно
+      const orderModal = document.getElementById('order');
+      
+      // Устанавливаем выбранную модель в скрытое поле
+      const modelInput = orderModal.querySelector('input[name="model"]');
+      if (modelInput) {
+        modelInput.value = model;
+      }
+      
+      // Отображаем модальное окно
+      orderModal.classList.add('popup_show');
+      orderModal.style.visibility = 'visible';
     }
   </script>
 </body>
