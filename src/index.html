@@ -563,8 +563,15 @@
         // обрабатываем запрос
         const json = await response.json();
         if (json.result === "success") {
-          // в случае успеха
-          alert(json.info);
+          // в случае успеха показываем поп-ап
+          showSuccessPopup();
+          // очищаем форму
+          event.target.reset();
+          // закрываем модальное окно, если форма была в модальном окне
+          if (document.querySelector('#order').classList.contains('popup_show')) {
+            document.querySelector('#order').classList.remove('popup_show');
+            document.querySelector('#order').style.visibility = 'hidden';
+          }
         } else {
           // в случае ошибки
           console.log(json.desc);
@@ -699,6 +706,34 @@ lightbox.option({
     })
 </script> -->
 
+  <!-- Поп-ап успешной отправки формы -->
+  <div class="popup" id="success-popup" data-scroll-lock-scrollable="">
+    <div class="popup__box success-box">
+      <div class="section__title section__title_alone">Сообщение успешно отправлено!</div>
+      <p class="success-message">Спасибо за вашу заявку! Мы свяжемся с вами в ближайшее время.</p>
+      <button class="form__button success-button" onclick="closeSuccessPopup()">Закрыть</button>
+      <div class="popup__close" onclick="closeSuccessPopup()">
+        <div class="popup__close-icon"></div>
+      </div>
+    </div>
+    <div class="popup__overlay" onclick="closeSuccessPopup()"></div>
+  </div>
+  
+  <script>
+    // Функция для показа поп-апа успешной отправки
+    function showSuccessPopup() {
+      const popup = document.getElementById('success-popup');
+      popup.classList.add('popup_show');
+      popup.style.visibility = 'visible';
+    }
+    
+    // Функция для закрытия поп-апа успешной отправки
+    function closeSuccessPopup() {
+      const popup = document.getElementById('success-popup');
+      popup.classList.remove('popup_show');
+      popup.style.visibility = 'hidden';
+    }
+  </script>
 </body>
 
 </html>

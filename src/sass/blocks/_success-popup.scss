@@ -1,0 +1,37 @@
+#success-popup {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s linear;
+  
+  &.popup_show {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .success-box {
+    max-width: 500px;
+    text-align: center;
+    padding: 30px;
+  }
+  
+  .success-message {
+    margin: 20px 0;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  
+  .success-button {
+    margin: 20px auto;
+    display: block;
+    padding: 10px 30px;
+    background-color: #526276;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+    &:hover {
+      background-color: darken(#526276, 10%);
+    }
+  }
+}
