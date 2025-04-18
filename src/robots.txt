@@ -1,2 +1,15 @@
 User-agent: *
-Disallow: /
+Allow: /
+Disallow: /dist/
+Disallow: /phpmailer/
+Disallow: /send.php
+
+# Разрешаем индексацию изображений
+User-agent: Googlebot-Image
+Allow: /img/
+
+# Указываем расположение карты сайта
+Sitemap: https://xn----7sbabmd7ceko3h.xn--p1ai/sitemap.xml
+
+# Указываем основное зеркало сайта
+Host: https://xn----7sbabmd7ceko3h.xn--p1ai
