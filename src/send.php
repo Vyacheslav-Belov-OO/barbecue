@@ -69,8 +69,8 @@ if (!error_get_last()) {
     
     // Настройки Gmail SMTP
     $mail->Host       = 'smtp.gmail.com'; // SMTP сервер Gmail
-    $mail->Username   = 'belov.52nn@gmail.com'; // Ваш Gmail адрес
-    $mail->Password   = 'enxo hoho ytam gfrk'; // Пароль приложения
+    $mail->Username   = 'promixmebel@gmail.com'; // Ваш Gmail адрес
+    $mail->Password   = 'odvv aswo qlnk akhb'; // Пароль приложения
     $mail->SMTPSecure = 'tls';
     $mail->Port       = 587;
     $mail->SMTPOptions = array(
@@ -80,10 +80,10 @@ if (!error_get_last()) {
             'allow_self_signed' => true
         )
     );
-    $mail->setFrom('belov.52nn@gmail.com', 'Мангал-очаг'); // Адрес отправителя и имя
+    $mail->setFrom('promixmebel@gmail.com', 'Мангал-очаг'); // Адрес отправителя и имя
     
     // Получатель письма
-    $mail->addAddress('belov.52nn@gmail.com'); // Куда приходят письма
+    $mail->addAddress('promixmebel@gmail.com'); // Куда приходят письма
     
     
     // Отправка сообщения
