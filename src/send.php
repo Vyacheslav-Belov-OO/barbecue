@@ -34,17 +34,23 @@ if (!error_get_last()) {
     //$mail->SMTPDebug = 2;
     $mail->Debugoutput = function($str, $level) {$GLOBALS['data']['debug'][] = $str;};
     
-    // Настройки вашей почты
-    $mail->Host       = 'smtp.mail.ru'; // SMTP сервера вашей почты
-    $mail->Username   = 'promix-print@mail.ru'; // Логин на почте
-    $mail->Password   = 'Goldstar43#$'; // Пароль на почте
-    $mail->SMTPSecure = 'ssl';
-    $mail->Port       = 465;
-    $mail->setFrom('promix-print@mail.ru', 'promix-print'); // Адрес самой почты и имя отправителя
+    // Настройки Gmail SMTP
+    $mail->Host       = 'smtp.gmail.com'; // SMTP сервер Gmail
+    $mail->Username   = 'belov.52nn@gmail.com'; // Ваш Gmail адрес
+    $mail->Password   = 'enxo hoho ytam gfrk'; // Пароль приложения
+    $mail->SMTPSecure = 'tls';
+    $mail->Port       = 587;
+    $mail->SMTPOptions = array(
+        'ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+        )
+    );
+    $mail->setFrom('belov.52nn@gmail.com', 'Мангал-очаг'); // Адрес отправителя и имя
     
     // Получатель письма
-    $mail->addAddress('promix-print@mail.ru');  
-    $mail->addAddress('promix-print@mail.ru'); // Ещё один, если нужен
+    $mail->addAddress('belov.52nn@gmail.com'); // Куда приходят письма
     
     
     // Отправка сообщения
