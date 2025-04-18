@@ -4,19 +4,25 @@ require 'phpmailer/PHPMailer.php';
 require 'phpmailer/SMTP.php';
 require 'phpmailer/Exception.php';
 
+// Добавляем логирование входящих данных
+file_put_contents('debug_log.txt', date('Y-m-d H:i:s') . " - POST data: " . print_r($_POST, true) . "\n", FILE_APPEND);
+
 # проверка, что ошибки нет
 if (!error_get_last()) {
 
     // Переменные, которые отправляет пользователь
-    $name = isset($_POST['name']) ? $_POST['name'] : 'Не указано';
-    $surname = isset($_POST['surname']) ? $_POST['surname'] : '';
-    $phone = isset($_POST['phone']) ? $_POST['phone'] : 'Не указано';
-    $email = isset($_POST['email']) ? $_POST['email'] : 'Не указано';
-    $text = isset($_POST['text']) ? $_POST['text'] : 'Не указано';
+    $name = !empty($_POST['name']) ? $_POST['name'] : 'Не указано';
+    $surname = !empty($_POST['surname']) ? $_POST['surname'] : '';
+    $phone = !empty($_POST['phone']) ? $_POST['phone'] : 'Не указано';
+    $email = !empty($_POST['email']) ? $_POST['email'] : 'Не указано';
+    $text = !empty($_POST['text']) ? $_POST['text'] : 'Не указано';
     
     // Дополнительные поля, которые могут быть в форме
-    $model = isset($_POST['model']) ? $_POST['model'] : '';
-    $color = isset($_POST['color']) ? $_POST['color'] : '';
+    $model = !empty($_POST['model']) ? $_POST['model'] : '';
+    $color = !empty($_POST['color']) ? $_POST['color'] : '';
+    
+    // Добавляем отладочную информацию о переменных
+    file_put_contents('debug_vars.txt', date('Y-m-d H:i:s') . " - Variables:\nname: $name\nphone: $phone\nemail: $email\ntext: $text\nmodel: $model\ncolor: $color\n\n", FILE_APPEND);
     
     // Формирование самого письма
     $title = "Заявка с сайта Мангал-очаг"; // Заголовок письма
