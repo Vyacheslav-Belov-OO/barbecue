@@ -626,15 +626,20 @@
         console.log('Response:', json);
         
         if (json.result === "success") {
-          // в случае успеха показываем поп-ап
-          showSuccessPopup();
+          // в случае успеха показываем модальное окно успеха
           // очищаем форму
           form.reset();
-          // закрываем модальное окно, если форма была в модальном окне
+          
+          // закрываем модальное окно заказа, если форма была в нем
           if (document.querySelector('#order') && document.querySelector('#order').classList.contains('popup_show')) {
             document.querySelector('#order').classList.remove('popup_show');
             document.querySelector('#order').style.visibility = 'hidden';
           }
+          
+          // Показываем модальное окно успешной отправки
+          setTimeout(function() {
+            showSuccessModal();
+          }, 300); // небольшая задержка для плавности
         } else {
           // в случае ошибки
           console.log(json.desc);
@@ -770,32 +775,32 @@ lightbox.option({
     })
 </script> -->
 
-  <!-- Поп-ап успешной отправки формы -->
-  <div class="popup" id="success-popup" data-scroll-lock-scrollable="">
-    <div class="popup__box success-box">
+  <!-- Модальное окно успешной отправки формы -->
+  <div class="popup" id="success-modal" data-scroll-lock-scrollable="">
+    <div class="popup__box">
       <div class="section__title section__title_alone">Сообщение успешно отправлено!</div>
-      <p class="success-message">Спасибо за вашу заявку! Мы свяжемся с вами в ближайшее время.</p>
-      <button class="form__button success-button" onclick="closeSuccessPopup()">Закрыть</button>
-      <div class="popup__close" onclick="closeSuccessPopup()">
+      <p style="text-align: center; margin: 20px 0; font-size: 18px;">Спасибо за вашу заявку! Мы свяжемся с вами в ближайшее время.</p>
+      <button class="form__button feedback__button button" style="margin: 20px auto; display: block;" onclick="closeSuccessModal()">Закрыть</button>
+      <div class="popup__close" onclick="closeSuccessModal()">
         <div class="popup__close-icon"></div>
       </div>
     </div>
-    <div class="popup__overlay" onclick="closeSuccessPopup()"></div>
+    <div class="popup__overlay" onclick="closeSuccessModal()"></div>
   </div>
   
   <script>
-    // Функция для показа поп-апа успешной отправки
-    function showSuccessPopup() {
-      const popup = document.getElementById('success-popup');
-      popup.classList.add('popup_show');
-      popup.style.visibility = 'visible';
+    // Функция для показа модального окна успешной отправки
+    function showSuccessModal() {
+      const modal = document.getElementById('success-modal');
+      modal.classList.add('popup_show');
+      modal.style.visibility = 'visible';
     }
     
-    // Функция для закрытия поп-апа успешной отправки
-    function closeSuccessPopup() {
-      const popup = document.getElementById('success-popup');
-      popup.classList.remove('popup_show');
-      popup.style.visibility = 'hidden';
+    // Функция для закрытия модального окна успешной отправки
+    function closeSuccessModal() {
+      const modal = document.getElementById('success-modal');
+      modal.classList.remove('popup_show');
+      modal.style.visibility = 'hidden';
     }
     
     // Функция для открытия модального окна с выбранной моделью
