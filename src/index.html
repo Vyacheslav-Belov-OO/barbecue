@@ -445,7 +445,7 @@
           <div class="form_title">Обратная связь</div>
           <div class="form_descr">Поделитесь мнением о нашей работе или задайте нам любой интересующий вас вопрос в поле
             комментарий</div>
-          <form enctype="multipart/form-data" method="post" id="form" onsubmit="submitForm(event); return false;" action="send.php"
+          <form enctype="multipart/form-data" method="post" id="form" target="hidden_iframe" onsubmit="submitted=true;" action="send.php"
             class="form">
             <input type="text" class="name" name="name" placeholder="Имя">
             <input type="text" class="surname" name="surname" placeholder="Фамилия">
@@ -509,7 +509,7 @@
   <div class="popup" id="order" data-scroll-lock-scrollable="">
     <div class="popup__box">
       <div class="section__title section__title_alone">ЗАКАЗАТЬ МАНГАЛ-ОЧАГ</div>
-      <form method="post" action="send.php" class="discount__form form form_send form_feedback" onsubmit="submitForm(event); return false;" id="orderForm">
+      <form method="post" action="send.php" class="discount__form form form_send form_feedback" target="hidden_iframe" onsubmit="submitted=true;" id="orderForm">
         <input type="hidden" name="model" value="Заказать арт. пр-01">
         <input type="hidden" name="text" value="Заказ мангал-очага из модального окна">
         <input class="form__input" type="text" name="name" id="order_name" placeholder="Имя" autocomplete="off" required=""
@@ -818,6 +818,36 @@ lightbox.option({
       orderModal.classList.add('popup_show');
       orderModal.style.visibility = 'visible';
     }
+  </script>
+  <!-- Скрытый iframe для отправки формы без перезагрузки страницы -->
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+  <script>
+    var submitted = false;
+    
+    // При загрузке iframe после отправки формы
+    document.getElementById('hidden_iframe').addEventListener('load', function() {
+      if (submitted) {
+        // Закрываем модальное окно заказа, если оно открыто
+        var orderModal = document.getElementById('order');
+        if (orderModal && orderModal.classList.contains('popup_show')) {
+          orderModal.classList.remove('popup_show');
+          orderModal.style.visibility = 'hidden';
+        }
+        
+        // Показываем модальное окно успешной отправки
+        setTimeout(function() {
+          showSuccessModal();
+          
+          // Сбрасываем флаг отправки
+          submitted = false;
+          
+          // Очищаем формы
+          document.getElementById('form').reset();
+          document.getElementById('orderForm').reset();
+        }, 300);
+      }
+    });
   </script>
 </body>
 
