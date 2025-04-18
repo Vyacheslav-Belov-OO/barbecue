@@ -548,27 +548,48 @@
     async function submitForm(event) {
       event.preventDefault(); // отключаем перезагрузку/перенаправление страницы
       try {
+        // Проверяем заполнение обязательных полей
+        const form = event.target;
+        const formData = new FormData(form);
+        
+        // Проверка заполнения телефона
+        const phone = form.querySelector('input[name="phone"]');
+        if (phone && (!phone.value || phone.value.trim() === '')) {
+          throw 'Пожалуйста, укажите ваш телефон';
+        }
+        
+        // Добавляем данные в консоль для отладки
+        console.log('Form data:');
+        for (let pair of formData.entries()) {
+          console.log(pair[0] + ': ' + pair[1]);
+        }
+        
         // Формируем запрос
-        const response = await fetch(event.target.action, {
+        const response = await fetch(form.action, {
           method: 'POST',
-          body: new FormData(event.target)
+          body: formData
         });
+        
         // проверяем, что ответ есть
         if (!response.ok) throw (`Ошибка при обращении к серверу: ${response.status}`);
+        
         // проверяем, что ответ действительно JSON
         const contentType = response.headers.get('content-type');
         if (!contentType || !contentType.includes('application/json')) {
           throw ('Ошибка. Ответ не JSON');
         }
+        
         // обрабатываем запрос
         const json = await response.json();
+        console.log('Response:', json);
+        
         if (json.result === "success") {
           // в случае успеха показываем поп-ап
           showSuccessPopup();
           // очищаем форму
-          event.target.reset();
+          form.reset();
           // закрываем модальное окно, если форма была в модальном окне
-          if (document.querySelector('#order').classList.contains('popup_show')) {
+          if (document.querySelector('#order') && document.querySelector('#order').classList.contains('popup_show')) {
             document.querySelector('#order').classList.remove('popup_show');
             document.querySelector('#order').style.visibility = 'hidden';
           }
@@ -578,6 +599,7 @@
           throw (json.info);
         }
       } catch (error) { // обработка ошибки
+        console.error('Error:', error);
         alert(error);
       }
     }
