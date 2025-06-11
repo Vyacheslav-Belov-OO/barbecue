@@ -14,8 +14,38 @@ document.addEventListener('DOMContentLoaded', function () {
 
       submitForm(e); // Вызываем нашу функцию обработки
     });
-  }
+  } // Добавляем hover-эффект при клике на все кнопки "Заказать"
 
+
+  var orderButtons = document.querySelectorAll('.form__button, .feedback__button, button[type="submit"]'); // Функция для снятия активного состояния со всех кнопок
+
+  function removeActiveStateFromAllButtons() {
+    orderButtons.forEach(function (button) {
+      button.classList.remove('button-active');
+    });
+  } // Добавляем обработчики для каждой кнопки
+
+
+  orderButtons.forEach(function (button) {
+    button.addEventListener('click', function (e) {
+      // Сначала снимаем активность со всех кнопок
+      removeActiveStateFromAllButtons(); // Затем добавляем активность на текущую кнопку
+
+      this.classList.add('button-active');
+      e.stopPropagation(); // Предотвращаем всплытие события
+    });
+  }); // Снимаем активность при клике в любом месте страницы
+
+  document.addEventListener('click', function () {
+    removeActiveStateFromAllButtons();
+  }); // Чтобы не снимать активность при переключении между полями формы
+
+  var formInputs = document.querySelectorAll('.form__input, .form__chekbox');
+  formInputs.forEach(function (input) {
+    input.addEventListener('click', function (e) {
+      e.stopPropagation();
+    });
+  });
   var menu = document.querySelector('.menu_top_header');
   var modal = document.querySelector('#order');
   var submitButtom = document.querySelectorAll('.submit_button');
@@ -81,21 +111,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function _submitForm() {
     _submitForm = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
-      var recaptchaResponse, errorBlock, formData, response, contentType, json;
+      var errorBlock, loader, recaptchaResponse, formData, response, contentType, json;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               // event.preventDefault() уже вызван в обработчике формы
-              // Проверка наличия токена reCAPTCHA
+              // Получаем ссылки на элементы формы
+              errorBlock = document.getElementById('orderFormError');
+              loader = document.getElementById('formLoader'); // Скрываем сообщения об ошибках
+
+              if (errorBlock) {
+                errorBlock.style.display = 'none';
+                errorBlock.textContent = '';
+              } // Проверка наличия токена reCAPTCHA
+
+
               recaptchaResponse = document.querySelector('[name="g-recaptcha-response"]');
 
               if (!(!recaptchaResponse || !recaptchaResponse.value)) {
-                _context.next = 5;
+                _context.next = 7;
                 break;
               }
-
-              errorBlock = document.getElementById('orderFormError');
 
               if (errorBlock) {
                 errorBlock.style.display = 'block';
@@ -104,89 +141,105 @@ document.addEventListener('DOMContentLoaded', function () {
 
               return _context.abrupt("return");
 
-            case 5:
-              _context.prev = 5;
-              // Формируем данные формы с токеном
+            case 7:
+              _context.prev = 7;
+              // Показываем лоадер
+              if (loader) loader.style.display = 'block'; // Формируем данные формы с токеном
+
               formData = new FormData(event.target);
               formData.append('g-recaptcha-response', recaptchaResponse.value); // Формируем запрос
 
-              _context.next = 10;
+              _context.next = 13;
               return fetch(event.target.action, {
                 method: 'POST',
                 body: formData
               });
 
-            case 10:
+            case 13:
               response = _context.sent;
 
               if (response.ok) {
-                _context.next = 13;
+                _context.next = 16;
                 break;
               }
 
               throw "\u041E\u0448\u0438\u0431\u043A\u0430 \u043F\u0440\u0438 \u043E\u0431\u0440\u0430\u0449\u0435\u043D\u0438\u0438 \u043A \u0441\u0435\u0440\u0432\u0435\u0440\u0443: ".concat(response.status);
 
-            case 13:
+            case 16:
               // проверяем, что ответ действительно JSON
               contentType = response.headers.get('content-type');
 
               if (!(!contentType || !contentType.includes('application/json'))) {
-                _context.next = 16;
+                _context.next = 19;
                 break;
               }
 
               throw 'Ошибка обработки. Ответ не JSON';
 
-            case 16:
-              _context.next = 18;
+            case 19:
+              _context.next = 21;
               return response.json();
 
-            case 18:
+            case 21:
               json = _context.sent;
 
               if (!(json.result === "success")) {
-                _context.next = 25;
+                _context.next = 27;
                 break;
               }
 
               // в случае успеха
-              errorBlock = document.getElementById('orderFormError');
-
               if (errorBlock) {
                 errorBlock.style.display = 'none';
                 errorBlock.textContent = '';
               }
 
               alert(json.info);
-              _context.next = 27;
+              _context.next = 29;
               break;
 
-            case 25:
+            case 27:
               // в случае ошибки
               console.log(json);
               throw json.info;
 
-            case 27:
-              _context.next = 33;
+            case 29:
+              _context.next = 36;
               break;
 
-            case 29:
-              _context.prev = 29;
-              _context.t0 = _context["catch"](5);
+            case 31:
+              _context.prev = 31;
+              _context.t0 = _context["catch"](7);
               // обработка ошибки
-              errorBlock = document.getElementById('orderFormError');
+              console.error('Form submission error:', _context.t0); // Показываем блок с ошибкой
 
               if (errorBlock) {
                 errorBlock.style.display = 'block';
-                errorBlock.textContent = _context.t0;
+
+                if (_context.t0.includes('reCAPTCHA')) {
+                  errorBlock.textContent = 'Ошибка проверки капчи. Попробуйте обновить страницу и пройти капчу заново.';
+                } else {
+                  errorBlock.textContent = _context.t0;
+                }
+              } // Сброс капчи при ошибке
+
+
+              if (typeof grecaptcha !== 'undefined') {
+                grecaptcha.reset();
               }
 
-            case 33:
+            case 36:
+              _context.prev = 36;
+              // Скрываем лоадер в любом случае
+              if (loader) loader.style.display = 'none';
+              return _context.finish(36);
+
+            case 39:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[5, 29]]);
+      }, _callee, null, [[7, 31, 36, 39]]);
     }));
     return _submitForm.apply(this, arguments);
   }

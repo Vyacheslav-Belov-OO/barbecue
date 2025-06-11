@@ -3,20 +3,66 @@
 header('Content-Type: application/json');
 
 // === Google reCAPTCHA v2 validation ===
-$recaptchaSecret = '6Lcr1VwrAAAAAH3O6Fu03B46OOevSFEbCVyfcpUO'; // <-- ВСТАВЬТЕ СЮДА СЕКРЕТНЫЙ КЛЮЧ
+$recaptchaSecret = '6Lcr1VwrAAAAAH3O6Fu03B46OOevSFEbCVyfcpUO'; // <-- СЕКРЕТНЫЙ КЛЮЧ ДЛЯ reCAPTCHA
+
+// Создаем файл для логирования ошибок reCAPTCHA
+function logRecaptchaError($message) {
+    file_put_contents('recaptcha_errors.log', date('Y-m-d H:i:s') . ' - ' . $message . "\n", FILE_APPEND);
+}
+
+// Проверяем наличие токена капчи
 if (empty($_POST['g-recaptcha-response'])) {
+    logRecaptchaError("Missing g-recaptcha-response token");
     echo json_encode(['result'=>'error','info'=>'Не пройдена проверка reCAPTCHA']);
     exit;
 }
+
 $recaptcha = $_POST['g-recaptcha-response'];
 $remoteip = $_SERVER['REMOTE_ADDR'];
-$recaptchaUrl = 'https://www.google.com/recaptcha/api/siteverify';
 
-// Запрос к Google для проверки токена
-$recaptchaResponse = file_get_contents($recaptchaUrl.'?secret='.$recaptchaSecret.'&response='.$recaptcha.'&remoteip='.$remoteip);
-$recaptchaData = json_decode($recaptchaResponse, true);
-if (!$recaptchaData['success']) {
-    echo json_encode(['result'=>'error','info'=>'Ошибка проверки reCAPTCHA']);
+// Используем cURL вместо file_get_contents для более надежного соединения
+$url = 'https://www.google.com/recaptcha/api/siteverify';
+$data = [
+    'secret' => $recaptchaSecret,
+    'response' => $recaptcha,
+    'remoteip' => $remoteip
+];
+
+// Инициализируем cURL
+$curl = curl_init();
+
+// Устанавливаем параметры cURL
+curl_setopt($curl, CURLOPT_URL, $url);
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true); // Проверка SSL сертификата
+
+// Выполняем запрос
+$response = curl_exec($curl);
+$error = curl_error($curl);
+
+// Проверяем на ошибки cURL
+if ($error) {
+    logRecaptchaError("cURL Error: " . $error);
+    echo json_encode(['result'=>'error','info'=>'Ошибка проверки reCAPTCHA: не удалось подключиться к серверу Google']);
+    exit;
+}
+
+// Закрываем соединение curl
+curl_close($curl);
+
+// Декодируем ответ
+$recaptchaData = json_decode($response, true);
+
+// Логируем ответ для отладки
+logRecaptchaError("Response: " . print_r($recaptchaData, true));
+
+// Проверяем успешность проверки
+if (!isset($recaptchaData['success']) || $recaptchaData['success'] !== true) {
+    $errorMsg = isset($recaptchaData['error-codes']) ? implode(', ', $recaptchaData['error-codes']) : 'неизвестная ошибка';
+    logRecaptchaError("Validation failed: " . $errorMsg);
+    echo json_encode(['result'=>'error','info'=>'Ошибка проверки reCAPTCHA: ' . $errorMsg]);
     exit;
 }
 // === END reCAPTCHA validation ===

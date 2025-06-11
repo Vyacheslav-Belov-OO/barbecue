@@ -31,7 +31,31 @@
   <meta property="og:description" content="Купить мангал-очаг от производителя. Современные мангалы из термостойкой стали с чугунной чашей." />
   <meta property="vk:image" content="./img/meta.png" />
 
-
+  <!-- Стили для лоадера и активной кнопки -->
+  <style>
+    .loader-spinner {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border-left-color: #d32f2f;
+      margin: 0 auto;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Стиль для активной кнопки (клик или hover) */
+    .button-active {
+      background-color: #c12525 !important; /* Более темный красный */
+      box-shadow: 0 0 10px rgba(209, 47, 47, 0.7) !important; /* Свечение */
+      transform: scale(1.02) !important; /* Легкое увеличение */
+      transition: all 0.3s ease !important;
+    }
+  </style>
 
 </head>
 
@@ -530,6 +554,10 @@
           №152-ФЗ «О персональных данных», на условиях и для целей, определенных в Согласии на обработку персональных
           данных</label>
         <div id="orderFormError" style="color: #d32f2f; margin-top: 12px; font-size: 15px; display: none;"></div>
+        <div id="formLoader" style="display: none; text-align: center; margin-top: 15px;">
+          <div class="loader-spinner"></div>
+          <p style="margin-top: 10px;">Отправка сообщения...</p>
+        </div>
       </form>
       <div class="popup__close">
         <div class="popup__close-icon"></div>

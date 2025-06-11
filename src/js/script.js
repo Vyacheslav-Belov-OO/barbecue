@@ -9,6 +9,40 @@ document.addEventListener('DOMContentLoaded', () =>{
       submitForm(e); // Вызываем нашу функцию обработки
     });
   }
+  
+  // Добавляем hover-эффект при клике на все кнопки "Заказать"
+  const orderButtons = document.querySelectorAll('.form__button, .feedback__button, button[type="submit"]');
+  
+  // Функция для снятия активного состояния со всех кнопок
+  function removeActiveStateFromAllButtons() {
+    orderButtons.forEach(button => {
+      button.classList.remove('button-active');
+    });
+  }
+  
+  // Добавляем обработчики для каждой кнопки
+  orderButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      // Сначала снимаем активность со всех кнопок
+      removeActiveStateFromAllButtons();
+      // Затем добавляем активность на текущую кнопку
+      this.classList.add('button-active');
+      e.stopPropagation(); // Предотвращаем всплытие события
+    });
+  });
+  
+  // Снимаем активность при клике в любом месте страницы
+  document.addEventListener('click', function() {
+    removeActiveStateFromAllButtons();
+  });
+  
+  // Чтобы не снимать активность при переключении между полями формы
+  const formInputs = document.querySelectorAll('.form__input, .form__chekbox');
+  formInputs.forEach(input => {
+    input.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+  });
   const menu = document.querySelector('.menu_top_header');
   const modal = document.querySelector('#order');
   const submitButtom =document.querySelectorAll('.submit_button');
@@ -87,11 +121,20 @@ function openModal ()  {
 
   async function submitForm(event) {
     // event.preventDefault() уже вызван в обработчике формы
+    
+    // Получаем ссылки на элементы формы
+    const errorBlock = document.getElementById('orderFormError');
+    const loader = document.getElementById('formLoader');
+    
+    // Скрываем сообщения об ошибках
+    if (errorBlock) {
+      errorBlock.style.display = 'none';
+      errorBlock.textContent = '';
+    }
 
     // Проверка наличия токена reCAPTCHA
-    var recaptchaResponse = document.querySelector('[name="g-recaptcha-response"]');
+    let recaptchaResponse = document.querySelector('[name="g-recaptcha-response"]');
     if (!recaptchaResponse || !recaptchaResponse.value) {
-      var errorBlock = document.getElementById('orderFormError');
       if (errorBlock) {
         errorBlock.style.display = 'block';
         errorBlock.textContent = 'Пожалуйста, пройдите капчу.';
@@ -100,9 +143,13 @@ function openModal ()  {
     }
 
     try {
+      // Показываем лоадер
+      if (loader) loader.style.display = 'block';
+      
       // Формируем данные формы с токеном
       const formData = new FormData(event.target);
       formData.append('g-recaptcha-response', recaptchaResponse.value);
+      
       // Формируем запрос
       const response = await fetch(event.target.action, {
         method: 'POST',
@@ -119,7 +166,6 @@ function openModal ()  {
       const json = await response.json();
       if (json.result === "success") {
         // в случае успеха
-        var errorBlock = document.getElementById('orderFormError');
         if (errorBlock) {
           errorBlock.style.display = 'none';
           errorBlock.textContent = '';
@@ -131,11 +177,25 @@ function openModal ()  {
         throw (json.info);
       }
     } catch (error) { // обработка ошибки
-      var errorBlock = document.getElementById('orderFormError');
+      console.error('Form submission error:', error);
+      
+      // Показываем блок с ошибкой
       if (errorBlock) {
         errorBlock.style.display = 'block';
-        errorBlock.textContent = error;
+        if (error.includes('reCAPTCHA')) {
+          errorBlock.textContent = 'Ошибка проверки капчи. Попробуйте обновить страницу и пройти капчу заново.';
+        } else {
+          errorBlock.textContent = error;
+        }
       }
+      
+      // Сброс капчи при ошибке
+      if (typeof grecaptcha !== 'undefined') {
+        grecaptcha.reset();
+      }
+    } finally {
+      // Скрываем лоадер в любом случае
+      if (loader) loader.style.display = 'none';
     }
   }
 
