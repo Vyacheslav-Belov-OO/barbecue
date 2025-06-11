@@ -3,7 +3,7 @@
 header('Content-Type: application/json');
 
 // === Google reCAPTCHA v2 validation ===
-$recaptchaSecret = '6Ldr01wrAAAAALUsmzXTs8DwkVr9EINRYJ8oqfyh'; // <-- ВСТАВЬТЕ СЮДА СЕКРЕТНЫЙ КЛЮЧ
+$recaptchaSecret = '6Lcr1VwrAAAAAH3O6Fu03B46OOevSFEbCVyfcpUO'; // <-- ВСТАВЬТЕ СЮДА СЕКРЕТНЫЙ КЛЮЧ
 if (empty($_POST['g-recaptcha-response'])) {
     echo json_encode(['result'=>'error','info'=>'Не пройдена проверка reCAPTCHA']);
     exit;
