@@ -1,6 +1,14 @@
 "use strict";
 
 document.addEventListener('DOMContentLoaded', () =>{
+  // Добавляем обработчик на отправку формы
+  const orderForm = document.querySelector('#orderForm');
+  if (orderForm) {
+    orderForm.addEventListener('submit', function(e) {
+      e.preventDefault(); // Блокируем стандартную отправку
+      submitForm(e); // Вызываем нашу функцию обработки
+    });
+  }
   const menu = document.querySelector('.menu_top_header');
   const modal = document.querySelector('#order');
   const submitButtom =document.querySelectorAll('.submit_button');
@@ -78,13 +86,16 @@ function openModal ()  {
 
 
   async function submitForm(event) {
-    event.preventDefault(); // отключаем перезагрузку/перенаправление страницы
+    // event.preventDefault() уже вызван в обработчике формы
 
     // Проверка наличия токена reCAPTCHA
-    var recaptchaField = event.target.querySelector('.g-recaptcha');
     var recaptchaResponse = document.querySelector('[name="g-recaptcha-response"]');
     if (!recaptchaResponse || !recaptchaResponse.value) {
-      alert('Пожалуйста, подтвердите, что вы не робот.');
+      var errorBlock = document.getElementById('orderFormError');
+      if (errorBlock) {
+        errorBlock.style.display = 'block';
+        errorBlock.textContent = 'Пожалуйста, пройдите капчу.';
+      }
       return;
     }
 
@@ -108,6 +119,11 @@ function openModal ()  {
       const json = await response.json();
       if (json.result === "success") {
         // в случае успеха
+        var errorBlock = document.getElementById('orderFormError');
+        if (errorBlock) {
+          errorBlock.style.display = 'none';
+          errorBlock.textContent = '';
+        }
         alert(json.info);
       } else { 
         // в случае ошибки
@@ -115,7 +131,11 @@ function openModal ()  {
         throw (json.info);
       }
     } catch (error) { // обработка ошибки
-      alert(error);
+      var errorBlock = document.getElementById('orderFormError');
+      if (errorBlock) {
+        errorBlock.style.display = 'block';
+        errorBlock.textContent = error;
+      }
     }
   }
 

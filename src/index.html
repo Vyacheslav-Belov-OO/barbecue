@@ -513,7 +513,7 @@
   <div class="popup" id="order" data-scroll-lock-scrollable="">
     <div class="popup__box">
       <div class="section__title section__title_alone">ЗАКАЗАТЬ МАНГАЛ-ОЧАГ</div>
-      <form method="post" action="send.php" class="discount__form form form_send form_feedback" target="hidden_iframe" onsubmit="submitted=true;" id="orderForm">
+      <form method="post" action="send.php" class="discount__form form form_send form_feedback" id="orderForm">
         <input type="hidden" name="model" value="Заказать арт. пр-01">
         <input type="hidden" name="text" value="Заказ мангал-очага из модального окна">
         <input class="form__input" type="text" name="name" id="order_name" placeholder="Имя" autocomplete="off" required=""
@@ -529,6 +529,7 @@
           свое согласие на обработку моих персональных данных, в соответствии с Федеральным законом от 27.07.2006 года
           №152-ФЗ «О персональных данных», на условиях и для целей, определенных в Согласии на обработку персональных
           данных</label>
+        <div id="orderFormError" style="color: #d32f2f; margin-top: 12px; font-size: 15px; display: none;"></div>
       </form>
       <div class="popup__close">
         <div class="popup__close-icon"></div>

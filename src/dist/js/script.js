@@ -5,6 +5,17 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 document.addEventListener('DOMContentLoaded', function () {
+  // Добавляем обработчик на отправку формы
+  var orderForm = document.querySelector('#orderForm');
+
+  if (orderForm) {
+    orderForm.addEventListener('submit', function (e) {
+      e.preventDefault(); // Блокируем стандартную отправку
+
+      submitForm(e); // Вызываем нашу функцию обработки
+    });
+  }
+
   var menu = document.querySelector('.menu_top_header');
   var modal = document.querySelector('#order');
   var submitButtom = document.querySelectorAll('.submit_button');
@@ -70,96 +81,112 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function _submitForm() {
     _submitForm = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
-      var recaptchaField, recaptchaResponse, formData, response, contentType, json;
+      var recaptchaResponse, errorBlock, formData, response, contentType, json;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              event.preventDefault(); // отключаем перезагрузку/перенаправление страницы
+              // event.preventDefault() уже вызван в обработчике формы
               // Проверка наличия токена reCAPTCHA
-
-              recaptchaField = event.target.querySelector('.g-recaptcha');
               recaptchaResponse = document.querySelector('[name="g-recaptcha-response"]');
 
               if (!(!recaptchaResponse || !recaptchaResponse.value)) {
-                _context.next = 6;
+                _context.next = 5;
                 break;
               }
 
-              alert('Пожалуйста, подтвердите, что вы не робот.');
+              errorBlock = document.getElementById('orderFormError');
+
+              if (errorBlock) {
+                errorBlock.style.display = 'block';
+                errorBlock.textContent = 'Пожалуйста, пройдите капчу.';
+              }
+
               return _context.abrupt("return");
 
-            case 6:
-              _context.prev = 6;
+            case 5:
+              _context.prev = 5;
               // Формируем данные формы с токеном
               formData = new FormData(event.target);
               formData.append('g-recaptcha-response', recaptchaResponse.value); // Формируем запрос
 
-              _context.next = 11;
+              _context.next = 10;
               return fetch(event.target.action, {
                 method: 'POST',
                 body: formData
               });
 
-            case 11:
+            case 10:
               response = _context.sent;
 
               if (response.ok) {
-                _context.next = 14;
+                _context.next = 13;
                 break;
               }
 
               throw "\u041E\u0448\u0438\u0431\u043A\u0430 \u043F\u0440\u0438 \u043E\u0431\u0440\u0430\u0449\u0435\u043D\u0438\u0438 \u043A \u0441\u0435\u0440\u0432\u0435\u0440\u0443: ".concat(response.status);
 
-            case 14:
+            case 13:
               // проверяем, что ответ действительно JSON
               contentType = response.headers.get('content-type');
 
               if (!(!contentType || !contentType.includes('application/json'))) {
-                _context.next = 17;
+                _context.next = 16;
                 break;
               }
 
               throw 'Ошибка обработки. Ответ не JSON';
 
-            case 17:
-              _context.next = 19;
+            case 16:
+              _context.next = 18;
               return response.json();
 
-            case 19:
+            case 18:
               json = _context.sent;
 
               if (!(json.result === "success")) {
-                _context.next = 24;
+                _context.next = 25;
                 break;
               }
 
               // в случае успеха
+              errorBlock = document.getElementById('orderFormError');
+
+              if (errorBlock) {
+                errorBlock.style.display = 'none';
+                errorBlock.textContent = '';
+              }
+
               alert(json.info);
-              _context.next = 26;
+              _context.next = 27;
               break;
 
-            case 24:
+            case 25:
               // в случае ошибки
               console.log(json);
               throw json.info;
 
-            case 26:
-              _context.next = 31;
+            case 27:
+              _context.next = 33;
               break;
 
-            case 28:
-              _context.prev = 28;
-              _context.t0 = _context["catch"](6);
+            case 29:
+              _context.prev = 29;
+              _context.t0 = _context["catch"](5);
               // обработка ошибки
-              alert(_context.t0);
+              errorBlock = document.getElementById('orderFormError');
 
-            case 31:
+              if (errorBlock) {
+                errorBlock.style.display = 'block';
+                errorBlock.textContent = _context.t0;
+              }
+
+            case 33:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[6, 28]]);
+      }, _callee, null, [[5, 29]]);
     }));
     return _submitForm.apply(this, arguments);
   }
