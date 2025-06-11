@@ -79,11 +79,23 @@ function openModal ()  {
 
   async function submitForm(event) {
     event.preventDefault(); // отключаем перезагрузку/перенаправление страницы
+
+    // Проверка наличия токена reCAPTCHA
+    var recaptchaField = event.target.querySelector('.g-recaptcha');
+    var recaptchaResponse = document.querySelector('[name="g-recaptcha-response"]');
+    if (!recaptchaResponse || !recaptchaResponse.value) {
+      alert('Пожалуйста, подтвердите, что вы не робот.');
+      return;
+    }
+
     try {
+      // Формируем данные формы с токеном
+      const formData = new FormData(event.target);
+      formData.append('g-recaptcha-response', recaptchaResponse.value);
       // Формируем запрос
       const response = await fetch(event.target.action, {
         method: 'POST',
-        body: new FormData(event.target)
+        body: formData
       });
       // проверяем, что ответ есть
       if (!response.ok) throw (`Ошибка при обращении к серверу: ${response.status}`);

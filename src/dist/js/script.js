@@ -70,79 +70,96 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function _submitForm() {
     _submitForm = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
-      var response, contentType, json;
+      var recaptchaField, recaptchaResponse, formData, response, contentType, json;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               event.preventDefault(); // отключаем перезагрузку/перенаправление страницы
+              // Проверка наличия токена reCAPTCHA
 
-              _context.prev = 1;
-              _context.next = 4;
+              recaptchaField = event.target.querySelector('.g-recaptcha');
+              recaptchaResponse = document.querySelector('[name="g-recaptcha-response"]');
+
+              if (!(!recaptchaResponse || !recaptchaResponse.value)) {
+                _context.next = 6;
+                break;
+              }
+
+              alert('Пожалуйста, подтвердите, что вы не робот.');
+              return _context.abrupt("return");
+
+            case 6:
+              _context.prev = 6;
+              // Формируем данные формы с токеном
+              formData = new FormData(event.target);
+              formData.append('g-recaptcha-response', recaptchaResponse.value); // Формируем запрос
+
+              _context.next = 11;
               return fetch(event.target.action, {
                 method: 'POST',
-                body: new FormData(event.target)
+                body: formData
               });
 
-            case 4:
+            case 11:
               response = _context.sent;
 
               if (response.ok) {
-                _context.next = 7;
+                _context.next = 14;
                 break;
               }
 
               throw "\u041E\u0448\u0438\u0431\u043A\u0430 \u043F\u0440\u0438 \u043E\u0431\u0440\u0430\u0449\u0435\u043D\u0438\u0438 \u043A \u0441\u0435\u0440\u0432\u0435\u0440\u0443: ".concat(response.status);
 
-            case 7:
+            case 14:
               // проверяем, что ответ действительно JSON
               contentType = response.headers.get('content-type');
 
               if (!(!contentType || !contentType.includes('application/json'))) {
-                _context.next = 10;
+                _context.next = 17;
                 break;
               }
 
               throw 'Ошибка обработки. Ответ не JSON';
 
-            case 10:
-              _context.next = 12;
+            case 17:
+              _context.next = 19;
               return response.json();
 
-            case 12:
+            case 19:
               json = _context.sent;
 
               if (!(json.result === "success")) {
-                _context.next = 17;
+                _context.next = 24;
                 break;
               }
 
               // в случае успеха
               alert(json.info);
-              _context.next = 19;
+              _context.next = 26;
               break;
 
-            case 17:
+            case 24:
               // в случае ошибки
               console.log(json);
               throw json.info;
 
-            case 19:
-              _context.next = 24;
+            case 26:
+              _context.next = 31;
               break;
 
-            case 21:
-              _context.prev = 21;
-              _context.t0 = _context["catch"](1);
+            case 28:
+              _context.prev = 28;
+              _context.t0 = _context["catch"](6);
               // обработка ошибки
               alert(_context.t0);
 
-            case 24:
+            case 31:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 21]]);
+      }, _callee, null, [[6, 28]]);
     }));
     return _submitForm.apply(this, arguments);
   }

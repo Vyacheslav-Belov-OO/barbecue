@@ -2,6 +2,25 @@
 // Устанавливаем заголовок Content-Type для JSON
 header('Content-Type: application/json');
 
+// === Google reCAPTCHA v2 validation ===
+$recaptchaSecret = '6Ldr01wrAAAAALUsmzXTs8DwkVr9EINRYJ8oqfyh'; // <-- ВСТАВЬТЕ СЮДА СЕКРЕТНЫЙ КЛЮЧ
+if (empty($_POST['g-recaptcha-response'])) {
+    echo json_encode(['result'=>'error','info'=>'Не пройдена проверка reCAPTCHA']);
+    exit;
+}
+$recaptcha = $_POST['g-recaptcha-response'];
+$remoteip = $_SERVER['REMOTE_ADDR'];
+$recaptchaUrl = 'https://www.google.com/recaptcha/api/siteverify';
+
+// Запрос к Google для проверки токена
+$recaptchaResponse = file_get_contents($recaptchaUrl.'?secret='.$recaptchaSecret.'&response='.$recaptcha.'&remoteip='.$remoteip);
+$recaptchaData = json_decode($recaptchaResponse, true);
+if (!$recaptchaData['success']) {
+    echo json_encode(['result'=>'error','info'=>'Ошибка проверки reCAPTCHA']);
+    exit;
+}
+// === END reCAPTCHA validation ===
+
 // Файлы phpmailer
 require 'phpmailer/PHPMailer.php';
 require 'phpmailer/SMTP.php';
