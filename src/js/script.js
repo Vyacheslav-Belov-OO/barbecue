@@ -1,12 +1,21 @@
 "use strict";
 
 document.addEventListener('DOMContentLoaded', () =>{
-  // Добавляем обработчик на отправку формы
+  // Добавляем обработчик на отправку формы заказа
   const orderForm = document.querySelector('#orderForm');
   if (orderForm) {
     orderForm.addEventListener('submit', function(e) {
       e.preventDefault(); // Блокируем стандартную отправку
-      submitForm(e); // Вызываем нашу функцию обработки
+      submitForm(e, 'orderFormError', 'formLoader'); // Вызываем нашу функцию обработки
+    });
+  }
+  
+  // Добавляем обработчик на отправку формы обратной связи
+  const feedbackForm = document.querySelector('#form');
+  if (feedbackForm) {
+    feedbackForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      submitForm(e, 'feedbackFormError', 'feedbackFormLoader');
     });
   }
   
@@ -119,12 +128,12 @@ function openModal ()  {
   });
 
 
-  async function submitForm(event) {
+  async function submitForm(event, errorBlockId = 'orderFormError', loaderId = 'formLoader') {
     // event.preventDefault() уже вызван в обработчике формы
     
     // Получаем ссылки на элементы формы
-    const errorBlock = document.getElementById('orderFormError');
-    const loader = document.getElementById('formLoader');
+    const errorBlock = document.getElementById(errorBlockId);
+    const loader = document.getElementById(loaderId);
     
     // Скрываем сообщения об ошибках
     if (errorBlock) {
@@ -170,7 +179,26 @@ function openModal ()  {
           errorBlock.style.display = 'none';
           errorBlock.textContent = '';
         }
-        alert(json.info);
+        
+        // Очищаем поля формы
+        event.target.reset();
+        
+        // Сбрасываем капчу
+        if (typeof grecaptcha !== 'undefined') {
+          grecaptcha.reset();
+        }
+        
+        // Закрываем модальное окно заказа, если оно открыто
+        const orderModal = document.getElementById('order');
+        if (orderModal && orderModal.classList.contains('popup_show')) {
+          orderModal.classList.remove('popup_show');
+          orderModal.style.visibility = 'hidden';
+        }
+        
+        // Показываем модальное окно успеха
+        setTimeout(() => {
+          showSuccessModal();
+        }, 300); // Небольшая задержка для плавности
       } else { 
         // в случае ошибки
         console.log(json);

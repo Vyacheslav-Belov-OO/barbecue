@@ -473,13 +473,14 @@
           <div class="form_title">Обратная связь</div>
           <div class="form_descr">Поделитесь мнением о нашей работе или задайте нам любой интересующий вас вопрос в поле
             комментарий</div>
-          <form enctype="multipart/form-data" method="post" id="form" target="hidden_iframe" onsubmit="submitted=true;" action="send.php"
-            class="form">
-            <input type="text" class="name" name="name" placeholder="Имя">
+          <form enctype="multipart/form-data" method="post" id="form" action="send.php" class="form">
+            <input type="text" class="name" name="name" placeholder="Имя" required>
             <input type="text" class="surname" name="surname" placeholder="Фамилия">
-            <input type="tel" id="phone" class="phone" name="phone" placeholder="Телефон">
+            <input type="tel" id="phone" class="phone" name="phone" placeholder="Телефон" required>
             <input type="email" id="email" class="email" name="email" placeholder="E-mail">
             <textarea type="text" placeholder="Комментарий" class="text" name="text"></textarea>
+            <!-- Google reCAPTCHA -->
+            <div class="g-recaptcha" data-sitekey="6Lcr1VwrAAAAAJu9tBSBoZ-uvTDVY-p6Qbg3CisC"></div>
             <div class="checkbox">
               <input type="checkbox" name="checkbox" id="" checked>
               <p class="checkbox_text">Нажимая кнопку «Отправить», я даю свое согласие на обработку моих персональных
@@ -488,6 +489,11 @@
                   class="b24-form-control-required">*</span></p>
             </div>
             <button class="submit" type="submit">Отправить</button>
+            <div id="feedbackFormError" style="color: #d32f2f; margin-top: 12px; font-size: 15px; display: none;"></div>
+            <div id="feedbackFormLoader" style="display: none; text-align: center; margin-top: 15px;">
+              <div class="loader-spinner"></div>
+              <p style="margin-top: 10px;">Отправка сообщения...</p>
+            </div>
           </form>
         </div>
         <div class="map">

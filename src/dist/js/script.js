@@ -5,14 +5,24 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 document.addEventListener('DOMContentLoaded', function () {
-  // Добавляем обработчик на отправку формы
+  // Добавляем обработчик на отправку формы заказа
   var orderForm = document.querySelector('#orderForm');
 
   if (orderForm) {
     orderForm.addEventListener('submit', function (e) {
       e.preventDefault(); // Блокируем стандартную отправку
 
-      submitForm(e); // Вызываем нашу функцию обработки
+      submitForm(e, 'orderFormError', 'formLoader'); // Вызываем нашу функцию обработки
+    });
+  } // Добавляем обработчик на отправку формы обратной связи
+
+
+  var feedbackForm = document.querySelector('#form');
+
+  if (feedbackForm) {
+    feedbackForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      submitForm(e, 'feedbackFormError', 'feedbackFormLoader');
     });
   } // Добавляем hover-эффект при клике на все кнопки "Заказать"
 
@@ -111,15 +121,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function _submitForm() {
     _submitForm = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
-      var errorBlock, loader, recaptchaResponse, formData, response, contentType, json;
+      var errorBlockId,
+          loaderId,
+          errorBlock,
+          loader,
+          recaptchaResponse,
+          formData,
+          response,
+          contentType,
+          json,
+          orderModal,
+          _args = arguments;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              errorBlockId = _args.length > 1 && _args[1] !== undefined ? _args[1] : 'orderFormError';
+              loaderId = _args.length > 2 && _args[2] !== undefined ? _args[2] : 'formLoader';
               // event.preventDefault() уже вызван в обработчике формы
               // Получаем ссылки на элементы формы
-              errorBlock = document.getElementById('orderFormError');
-              loader = document.getElementById('formLoader'); // Скрываем сообщения об ошибках
+              errorBlock = document.getElementById(errorBlockId);
+              loader = document.getElementById(loaderId); // Скрываем сообщения об ошибках
 
               if (errorBlock) {
                 errorBlock.style.display = 'none';
@@ -130,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
               recaptchaResponse = document.querySelector('[name="g-recaptcha-response"]');
 
               if (!(!recaptchaResponse || !recaptchaResponse.value)) {
-                _context.next = 7;
+                _context.next = 9;
                 break;
               }
 
@@ -141,50 +163,50 @@ document.addEventListener('DOMContentLoaded', function () {
 
               return _context.abrupt("return");
 
-            case 7:
-              _context.prev = 7;
+            case 9:
+              _context.prev = 9;
               // Показываем лоадер
               if (loader) loader.style.display = 'block'; // Формируем данные формы с токеном
 
               formData = new FormData(event.target);
               formData.append('g-recaptcha-response', recaptchaResponse.value); // Формируем запрос
 
-              _context.next = 13;
+              _context.next = 15;
               return fetch(event.target.action, {
                 method: 'POST',
                 body: formData
               });
 
-            case 13:
+            case 15:
               response = _context.sent;
 
               if (response.ok) {
-                _context.next = 16;
+                _context.next = 18;
                 break;
               }
 
               throw "\u041E\u0448\u0438\u0431\u043A\u0430 \u043F\u0440\u0438 \u043E\u0431\u0440\u0430\u0449\u0435\u043D\u0438\u0438 \u043A \u0441\u0435\u0440\u0432\u0435\u0440\u0443: ".concat(response.status);
 
-            case 16:
+            case 18:
               // проверяем, что ответ действительно JSON
               contentType = response.headers.get('content-type');
 
               if (!(!contentType || !contentType.includes('application/json'))) {
-                _context.next = 19;
+                _context.next = 21;
                 break;
               }
 
               throw 'Ошибка обработки. Ответ не JSON';
 
-            case 19:
-              _context.next = 21;
+            case 21:
+              _context.next = 23;
               return response.json();
 
-            case 21:
+            case 23:
               json = _context.sent;
 
               if (!(json.result === "success")) {
-                _context.next = 27;
+                _context.next = 33;
                 break;
               }
 
@@ -192,24 +214,43 @@ document.addEventListener('DOMContentLoaded', function () {
               if (errorBlock) {
                 errorBlock.style.display = 'none';
                 errorBlock.textContent = '';
-              }
+              } // Очищаем поля формы
 
-              alert(json.info);
-              _context.next = 29;
+
+              event.target.reset(); // Сбрасываем капчу
+
+              if (typeof grecaptcha !== 'undefined') {
+                grecaptcha.reset();
+              } // Закрываем модальное окно заказа, если оно открыто
+
+
+              orderModal = document.getElementById('order');
+
+              if (orderModal && orderModal.classList.contains('popup_show')) {
+                orderModal.classList.remove('popup_show');
+                orderModal.style.visibility = 'hidden';
+              } // Показываем модальное окно успеха
+
+
+              setTimeout(function () {
+                showSuccessModal();
+              }, 300); // Небольшая задержка для плавности
+
+              _context.next = 35;
               break;
 
-            case 27:
+            case 33:
               // в случае ошибки
               console.log(json);
               throw json.info;
 
-            case 29:
-              _context.next = 36;
+            case 35:
+              _context.next = 42;
               break;
 
-            case 31:
-              _context.prev = 31;
-              _context.t0 = _context["catch"](7);
+            case 37:
+              _context.prev = 37;
+              _context.t0 = _context["catch"](9);
               // обработка ошибки
               console.error('Form submission error:', _context.t0); // Показываем блок с ошибкой
 
@@ -228,18 +269,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 grecaptcha.reset();
               }
 
-            case 36:
-              _context.prev = 36;
+            case 42:
+              _context.prev = 42;
               // Скрываем лоадер в любом случае
               if (loader) loader.style.display = 'none';
-              return _context.finish(36);
+              return _context.finish(42);
 
-            case 39:
+            case 45:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[7, 31, 36, 39]]);
+      }, _callee, null, [[9, 37, 42, 45]]);
     }));
     return _submitForm.apply(this, arguments);
   }
