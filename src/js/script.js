@@ -141,8 +141,32 @@ function openModal ()  {
       errorBlock.textContent = '';
     }
 
-    // Проверка наличия токена reCAPTCHA
-    let recaptchaResponse = document.querySelector('[name="g-recaptcha-response"]');
+    // Проверка наличия токена reCAPTCHA в текущей форме
+    let recaptchaResponse = event.target.querySelector('[name="g-recaptcha-response"]');
+    
+    // Если не нашли в форме, попробуем найти капчу внутри формы
+    if (!recaptchaResponse || !recaptchaResponse.value) {
+      // Попробуем найти div с капчей внутри формы
+      const recaptchaDiv = event.target.querySelector('.g-recaptcha');
+      if (recaptchaDiv) {
+        // Проверяем, есть ли в нём ответ от капчи
+        const recaptchaId = recaptchaDiv.getAttribute('data-widget-id');
+        if (recaptchaId && typeof grecaptcha !== 'undefined') {
+          const response = grecaptcha.getResponse(recaptchaId);
+          if (response) {
+            // Если есть ответ, создаем скрытое поле и добавляем его в форму
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'g-recaptcha-response';
+            input.value = response;
+            event.target.appendChild(input);
+            recaptchaResponse = input;
+          }
+        }
+      }
+    }
+    
+    // Если всё равно нет токена, показываем ошибку
     if (!recaptchaResponse || !recaptchaResponse.value) {
       if (errorBlock) {
         errorBlock.style.display = 'block';

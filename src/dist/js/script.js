@@ -126,12 +126,17 @@ document.addEventListener('DOMContentLoaded', function () {
           errorBlock,
           loader,
           recaptchaResponse,
-          formData,
+          recaptchaDiv,
+          recaptchaId,
           response,
+          input,
+          formData,
+          _response,
           contentType,
           json,
           orderModal,
           _args = arguments;
+
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -146,13 +151,38 @@ document.addEventListener('DOMContentLoaded', function () {
               if (errorBlock) {
                 errorBlock.style.display = 'none';
                 errorBlock.textContent = '';
-              } // Проверка наличия токена reCAPTCHA
+              } // Проверка наличия токена reCAPTCHA в текущей форме
 
 
-              recaptchaResponse = document.querySelector('[name="g-recaptcha-response"]');
+              recaptchaResponse = event.target.querySelector('[name="g-recaptcha-response"]'); // Если не нашли в форме, попробуем найти капчу внутри формы
+
+              if (!recaptchaResponse || !recaptchaResponse.value) {
+                // Попробуем найти div с капчей внутри формы
+                recaptchaDiv = event.target.querySelector('.g-recaptcha');
+
+                if (recaptchaDiv) {
+                  // Проверяем, есть ли в нём ответ от капчи
+                  recaptchaId = recaptchaDiv.getAttribute('data-widget-id');
+
+                  if (recaptchaId && typeof grecaptcha !== 'undefined') {
+                    response = grecaptcha.getResponse(recaptchaId);
+
+                    if (response) {
+                      // Если есть ответ, создаем скрытое поле и добавляем его в форму
+                      input = document.createElement('input');
+                      input.type = 'hidden';
+                      input.name = 'g-recaptcha-response';
+                      input.value = response;
+                      event.target.appendChild(input);
+                      recaptchaResponse = input;
+                    }
+                  }
+                }
+              } // Если всё равно нет токена, показываем ошибку
+
 
               if (!(!recaptchaResponse || !recaptchaResponse.value)) {
-                _context.next = 9;
+                _context.next = 10;
                 break;
               }
 
@@ -163,50 +193,50 @@ document.addEventListener('DOMContentLoaded', function () {
 
               return _context.abrupt("return");
 
-            case 9:
-              _context.prev = 9;
+            case 10:
+              _context.prev = 10;
               // Показываем лоадер
               if (loader) loader.style.display = 'block'; // Формируем данные формы с токеном
 
               formData = new FormData(event.target);
               formData.append('g-recaptcha-response', recaptchaResponse.value); // Формируем запрос
 
-              _context.next = 15;
+              _context.next = 16;
               return fetch(event.target.action, {
                 method: 'POST',
                 body: formData
               });
 
-            case 15:
-              response = _context.sent;
+            case 16:
+              _response = _context.sent;
 
-              if (response.ok) {
-                _context.next = 18;
+              if (_response.ok) {
+                _context.next = 19;
                 break;
               }
 
-              throw "\u041E\u0448\u0438\u0431\u043A\u0430 \u043F\u0440\u0438 \u043E\u0431\u0440\u0430\u0449\u0435\u043D\u0438\u0438 \u043A \u0441\u0435\u0440\u0432\u0435\u0440\u0443: ".concat(response.status);
+              throw "\u041E\u0448\u0438\u0431\u043A\u0430 \u043F\u0440\u0438 \u043E\u0431\u0440\u0430\u0449\u0435\u043D\u0438\u0438 \u043A \u0441\u0435\u0440\u0432\u0435\u0440\u0443: ".concat(_response.status);
 
-            case 18:
+            case 19:
               // проверяем, что ответ действительно JSON
-              contentType = response.headers.get('content-type');
+              contentType = _response.headers.get('content-type');
 
               if (!(!contentType || !contentType.includes('application/json'))) {
-                _context.next = 21;
+                _context.next = 22;
                 break;
               }
 
               throw 'Ошибка обработки. Ответ не JSON';
 
-            case 21:
-              _context.next = 23;
-              return response.json();
+            case 22:
+              _context.next = 24;
+              return _response.json();
 
-            case 23:
+            case 24:
               json = _context.sent;
 
               if (!(json.result === "success")) {
-                _context.next = 33;
+                _context.next = 34;
                 break;
               }
 
@@ -236,21 +266,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 showSuccessModal();
               }, 300); // Небольшая задержка для плавности
 
-              _context.next = 35;
+              _context.next = 36;
               break;
 
-            case 33:
+            case 34:
               // в случае ошибки
               console.log(json);
               throw json.info;
 
-            case 35:
-              _context.next = 42;
+            case 36:
+              _context.next = 43;
               break;
 
-            case 37:
-              _context.prev = 37;
-              _context.t0 = _context["catch"](9);
+            case 38:
+              _context.prev = 38;
+              _context.t0 = _context["catch"](10);
               // обработка ошибки
               console.error('Form submission error:', _context.t0); // Показываем блок с ошибкой
 
@@ -269,18 +299,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 grecaptcha.reset();
               }
 
-            case 42:
-              _context.prev = 42;
+            case 43:
+              _context.prev = 43;
               // Скрываем лоадер в любом случае
               if (loader) loader.style.display = 'none';
-              return _context.finish(42);
+              return _context.finish(43);
 
-            case 45:
+            case 46:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[9, 37, 42, 45]]);
+      }, _callee, null, [[10, 38, 43, 46]]);
     }));
     return _submitForm.apply(this, arguments);
   }
