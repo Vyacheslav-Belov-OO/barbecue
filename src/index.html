@@ -95,9 +95,12 @@
     </div>
   </section>
   <section class="top" id="top">
-    <video class="background-video" loop muted poster="./img/Bez-imeni-1_1x.jpg" preload="none" id="background-video">
-      <source src="./img/15 июня 2023 г.mp4" type="video/mp4">
-    </video>
+    <div class="video-container">
+      <img src="./img/Bez-imeni-1_1x.jpg" alt="Мангал-очаг" class="poster-image" id="poster-image">
+      <video class="background-video" loop muted preload="none" id="background-video">
+        <source src="./img/15 июня 2023 г.mp4" type="video/mp4">
+      </video>
+    </div>
     <header class="header">
       <div class="container">
         <div class="slogan_wrapper">
@@ -695,9 +698,21 @@
     // Функция для отложенной загрузки фонового видео
     function loadBackgroundVideo() {
       const video = document.getElementById('background-video');
+      const poster = document.getElementById('poster-image');
+      
       if (video) {
+        console.log('Начинаем загрузку фонового видео...');
+        
+        // Обработчик ошибки загрузки видео
+        video.addEventListener('error', function(e) {
+          console.error('Ошибка загрузки видео:', e);
+          // Убедимся, что постер виден
+          if (poster) poster.classList.remove('hidden');
+        });
+        
         // Устанавливаем обработчик события загрузки
         video.addEventListener('loadeddata', function() {
+          console.log('Видео загружено, начинаем воспроизведение');
           // Когда видео загружено, начинаем воспроизведение
           video.play();
         });
@@ -802,12 +817,58 @@
   
   <!-- Добавляем стили для плавного появления видео -->
   <style>
+    .top {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+    }
+    
+    .video-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    .poster-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      transition: opacity 1s ease-in-out;
+    }
+    
+    .poster-image.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
     .background-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
       opacity: 0;
       transition: opacity 1s ease-in-out;
     }
+    
     .background-video.loaded {
       opacity: 1;
+      z-index: 2;
+    }
+    
+    .header {
+      position: relative;
+      z-index: 10;
     }
   </style>
   
@@ -815,10 +876,26 @@
     // Добавляем класс для плавного появления видео после загрузки
     document.addEventListener('DOMContentLoaded', function() {
       const video = document.getElementById('background-video');
+      const poster = document.getElementById('poster-image');
+      
       if (video) {
+        // Когда видео может воспроизводиться без задержек
         video.addEventListener('canplaythrough', function() {
+          // Добавляем класс для плавного появления видео
           video.classList.add('loaded');
+          
+          // Скрываем постер с небольшой задержкой
+          setTimeout(function() {
+            if (poster) poster.classList.add('hidden');
+          }, 500);
         });
+        
+        // Если видео не загрузилось в течение 10 секунд, оставляем постер
+        setTimeout(function() {
+          if (!video.classList.contains('loaded')) {
+            console.log('Видео не загрузилось вовремя, оставляем постер');
+          }
+        }, 10000);
       }
     });
   </script>
