@@ -8,7 +8,7 @@ const { src, dest, watch, series, parallel } = require('gulp');
 const babel = require('gulp-babel');
 
 gulp.task('babel', () =>
-    gulp.src('src/js/*.js')
+    gulp.src(['src/js/*.js', '!src/js/jquery.min.js', '!src/js/*vendor*.js'])
         .pipe(babel({
             presets: ['@babel/env']
         }))
@@ -46,12 +46,18 @@ gulp.task('styles', function() {
         .pipe(browserSync.stream());
 });
 
+gulp.task('copy-vendor', () =>
+    gulp.src(['src/js/jquery.min.js', 'src/js/*vendor*.js'])
+        .pipe(gulp.dest('src/dist/js/'))
+);
+
 gulp.task('watch', function() {
     gulp.watch("src/sass/**/*.+(scss|sass)", gulp.parallel('styles'));
-    gulp.watch("src/js/*.js", gulp.parallel('babel'));
+    gulp.watch(["src/js/*.js", "!src/js/jquery.min.js", "!src/js/*vendor*.js"], gulp.parallel('babel'));
+    gulp.watch(["src/js/jquery.min.js", "src/js/*vendor*.js"], gulp.parallel('copy-vendor'));
     gulp.watch("src/css/*", gulp.parallel('autoprefixer'));
 })
 
-gulp.task('default', gulp.parallel('watch', 'server', 'styles', 'autoprefixer', 'babel'));
+gulp.task('default', gulp.parallel('watch', 'server', 'styles', 'autoprefixer', 'babel', 'copy-vendor'));
 
 // gulp.task('deployment', ['minify-css', 'minify-js', 'copy']);
