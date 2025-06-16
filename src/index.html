@@ -95,8 +95,8 @@
     </div>
   </section>
   <section class="top" id="top">
-    <video class="background-video" autoplay loop muted poster="../img/Bez-imeni-1_1x.jpg">
-      <source src="./img/15 июня 2023 г..mp4" type="video/mp4">
+    <video class="background-video" loop muted poster="./img/Bez-imeni-1_1x.jpg" preload="none" id="background-video">
+      <source src="./img/15 июня 2023 г.mp4" type="video/mp4">
     </video>
     <header class="header">
       <div class="container">
@@ -692,6 +692,27 @@
     }
   </script>
   <script>
+    // Функция для отложенной загрузки фонового видео
+    function loadBackgroundVideo() {
+      const video = document.getElementById('background-video');
+      if (video) {
+        // Устанавливаем обработчик события загрузки
+        video.addEventListener('loadeddata', function() {
+          // Когда видео загружено, начинаем воспроизведение
+          video.play();
+        });
+        
+        // Начинаем загрузку видео
+        video.load();
+      }
+    }
+    
+    // Загружаем видео после загрузки страницы
+    window.addEventListener('load', function() {
+      // Добавляем небольшую задержку, чтобы дать другим ресурсам приоритет
+      setTimeout(loadBackgroundVideo, 1000);
+    });
+    
     var tag = document.createElement('script');
 
     tag.src = "https://www.youtube.com/iframe_api";
@@ -777,6 +798,29 @@
       // Закрытие модального окна после отправки формы
       closeModal();
     }
+  </script>
+  
+  <!-- Добавляем стили для плавного появления видео -->
+  <style>
+    .background-video {
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .background-video.loaded {
+      opacity: 1;
+    }
+  </style>
+  
+  <script>
+    // Добавляем класс для плавного появления видео после загрузки
+    document.addEventListener('DOMContentLoaded', function() {
+      const video = document.getElementById('background-video');
+      if (video) {
+        video.addEventListener('canplaythrough', function() {
+          video.classList.add('loaded');
+        });
+      }
+    });
   </script>
 
   <script type="text/javascript" src="./js/jquery-1.7.min.js"></script>
