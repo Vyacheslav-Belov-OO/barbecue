@@ -28,7 +28,8 @@
         "A A A B B B"
         "A A A C C C"
         "D D E E F F"
-        "G G H H I I";
+        "G G H H I I"
+        "J J K K L L";
         .single_photo_wrapper{           
             overflow: hidden;            
            
@@ -59,6 +60,15 @@
             }
             &.slide9{
                 grid-area: I;
+            }
+            &.slide10{
+                grid-area: J;
+            }
+            &.slide11{
+                grid-area: K;
+            }
+            &.slide12{
+                grid-area: L;
             }
 
             .photo_slide{                
